@@ -12,7 +12,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [deliveryDropdownOpen, setDeliveryDropdownOpen] = useState(false);
-
+  const [menuDropdownOpen, setMenuDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +39,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
     onNavigate(path);
     setMobileMenuOpen(false);
     setDeliveryDropdownOpen(false);
+    setMenuDropdownOpen(false);
   };
 
   const isAnyMenuPathActive = currentPath.startsWith('/meny');
@@ -83,6 +84,78 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
             {NAV_LINKS.map((link) => {
               const isActive = link.path === '/meny/' ? isAnyMenuPathActive : currentPath === link.path;
+
+              // Submenu for Meny (Menu 2 & Menu 3)
+              if (link.path === '/meny/') {
+                return (
+                  <div
+                    key={link.path}
+                    className="relative"
+                    onMouseEnter={() => setMenuDropdownOpen(true)}
+                    onMouseLeave={() => setMenuDropdownOpen(false)}
+                  >
+                    <a
+                      href="/meny/"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavClick('/meny/');
+                      }}
+                      className={`px-3 py-2 text-sm font-medium transition-colors flex items-center gap-1 rounded-full ${
+                        isAnyMenuPathActive
+                          ? 'bg-[#CDEBF2] text-[#1E5F6E] font-bold border border-[#B8E2EC]'
+                          : 'text-[#1C1917]/80 hover:text-[#1C1917] hover:bg-[#CDEBF2]/30'
+                      }`}
+                    >
+                      {link.name}
+                      <ChevronDown className="w-3.5 h-3.5 opacity-70" />
+                    </a>
+
+                    {menuDropdownOpen && (
+                      <div className="absolute top-full left-0 w-52 bg-[#FAF7F2] rounded-2xl shadow-xl border border-[#CDEBF2] p-2 mt-1 z-50 animate-fadeIn">
+                        <div className="text-[10px] font-semibold uppercase tracking-wider text-[#1E5F6E] bg-[#CDEBF2]/50 px-3 py-1.5 rounded-lg mb-1">
+                          Välj Meny
+                        </div>
+                        <div className="space-y-0.5">
+                          <a
+                            href="/meny/"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleNavClick('/meny/');
+                            }}
+                            className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-colors ${
+                              currentPath === '/meny/' || currentPath === '/meny-2/'
+                                ? 'bg-[#CDEBF2] text-[#1E5F6E] font-bold'
+                                : 'text-[#1C1917] hover:bg-[#CDEBF2]/40'
+                            }`}
+                          >
+                            <span className="font-semibold">Menu 2</span>
+                            <span className="text-[11px] text-[#78716C] font-light">
+                              Med bilder
+                            </span>
+                          </a>
+                          <a
+                            href="/meny-3/"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleNavClick('/meny-3/');
+                            }}
+                            className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-colors ${
+                              currentPath === '/meny-3/'
+                                ? 'bg-[#CDEBF2] text-[#1E5F6E] font-bold'
+                                : 'text-[#1C1917] hover:bg-[#CDEBF2]/40'
+                            }`}
+                          >
+                            <span className="font-semibold">Menu 3</span>
+                            <span className="text-[11px] text-[#78716C] font-light">
+                              Utan bilder
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
 
 
 
@@ -230,6 +303,55 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
                 Meny & Sidor
               </span>
               {NAV_LINKS.map((link) => {
+                if (link.path === '/meny/') {
+                  return (
+                    <div key={link.path} className="space-y-1">
+                      <div
+                        className={`flex items-center justify-between py-2.5 px-4 rounded-xl text-lg font-serif transition-colors ${
+                          isAnyMenuPathActive
+                            ? 'bg-[#CDEBF2] text-[#1E5F6E] font-bold border border-[#B8E2EC] shadow-2xs'
+                            : 'text-[#1C1917] hover:bg-[#CDEBF2]/30'
+                        }`}
+                      >
+                        <span>{link.name}</span>
+                        <ChevronDown className="w-4 h-4 text-[#1E5F6E]" />
+                      </div>
+                      <div className="pl-4 space-y-1 pt-0.5">
+                        <a
+                          href="/meny/"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleNavClick('/meny/');
+                          }}
+                          className={`flex items-center justify-between py-2 px-3 rounded-xl text-sm transition-colors ${
+                            currentPath === '/meny/' || currentPath === '/meny-2/'
+                              ? 'bg-[#1E5F6E] text-white font-semibold'
+                              : 'text-[#1C1917]/80 hover:bg-[#CDEBF2]/30'
+                          }`}
+                        >
+                          <span>Menu 2 (Med bilder)</span>
+                          <span className="text-xs">→</span>
+                        </a>
+                        <a
+                          href="/meny-3/"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleNavClick('/meny-3/');
+                          }}
+                          className={`flex items-center justify-between py-2 px-3 rounded-xl text-sm transition-colors ${
+                            currentPath === '/meny-3/'
+                              ? 'bg-[#1E5F6E] text-white font-semibold'
+                              : 'text-[#1C1917]/80 hover:bg-[#CDEBF2]/30'
+                          }`}
+                        >
+                          <span>Menu 3 (Utan bilder)</span>
+                          <span className="text-xs">→</span>
+                        </a>
+                      </div>
+                    </div>
+                  );
+                }
+
                 const isActive = currentPath === link.path;
                 return (
                   <a

@@ -5,6 +5,7 @@ import { BookingModal } from './components/BookingModal';
 import { HomePage } from './pages/HomePage';
 import { OmOssPage } from './pages/OmOssPage';
 import { MenyPage } from './pages/MenyPage';
+import { MenyPage3 } from './pages/MenyPage3';
 import { CateringPage } from './pages/CateringPage';
 import { MatladorPage } from './pages/MatladorPage';
 import { HemleveransPage } from './pages/HemleveransPage';
@@ -40,7 +41,9 @@ export function App() {
     const titleMap: Record<string, string> = {
       '/': 'Sima Deli | Persisk Deli & Restaurang Stockholm | Valhallavägen 120',
       '/om-oss/': 'Om Oss | Sima Deli - Äkta Persisk Matlagning Stockholm',
-      '/meny/': 'Meny | Sima Deli - Persisk Restaurang Stockholm',
+      '/meny/': 'Meny 2: The Greatest Table | Sima Deli Stockholm',
+      '/meny-2/': 'Meny 2: The Greatest Table | Sima Deli Stockholm',
+      '/meny-3/': 'Meny 3: Textmeny (Utan bilder) | Sima Deli Stockholm',
       '/catering/': 'Catering & Abonnering | Sima Deli Stockholm',
       '/sima-deli-matlador/': 'Sima Deli Matlådor | Återförsäljare i Butik runt Stockholm',
       '/hemleverans/': 'Hemleverans | Sima Deli via Wolt, Foodora & Uber Eats',
@@ -68,13 +71,10 @@ export function App() {
       case '/om-oss/':
         return <OmOssPage onOpenBooking={() => setIsBookingModalOpen(true)} onNavigate={handleNavigate} />;
       case '/meny/':
-      case '/meny-1/':
       case '/meny-2/':
-      case '/meny-3/':
-      case '/meny-4/':
-      case '/meny-5/':
-      case '/meny-8/':
         return <MenyPage onOpenBooking={() => setIsBookingModalOpen(true)} onNavigate={handleNavigate} />;
+      case '/meny-3/':
+        return <MenyPage3 onOpenBooking={() => setIsBookingModalOpen(true)} onNavigate={handleNavigate} />;
       case '/catering/':
         return <CateringPage />;
       case '/sima-deli-matlador/':

@@ -5,9 +5,10 @@ import { RESTAURANT_INFO, MENU_ITEMS, type MenuItem } from '../../data/siteData'
 interface MenuLayoutProps {
   onOpenBooking?: () => void;
   onNavigate?: (path: string) => void;
+  hideImages?: boolean;
 }
 
-export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate }) => {
+export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, hideImages = false }) => {
   const [addedItem, setAddedItem] = useState<string | null>(null);
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
@@ -56,24 +57,28 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate }
   const renderDishCard = (dish: MenuItem) => (
     <div
       key={dish.id}
-      className="flex items-center justify-between gap-3 sm:gap-4 p-2.5 rounded-2xl hover:bg-stone-100/70 border border-transparent hover:border-stone-200/80 transition-all duration-200 group"
+      className={`flex items-center justify-between gap-3 sm:gap-4 p-3 sm:p-3.5 rounded-2xl hover:bg-stone-100/70 border border-transparent hover:border-stone-200/80 transition-all duration-200 group ${
+        hideImages ? 'bg-white/60 shadow-2xs' : ''
+      }`}
     >
       <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-        {/* Full Uncropped Image or Clean Empty Placeholder */}
-        <div className="w-16 h-20 sm:w-20 sm:h-24 rounded-xl overflow-hidden bg-white border border-stone-200 shrink-0 shadow-xs p-1 flex items-center justify-center">
-          {dish.image && !failedImages[dish.id] ? (
-            <img
-              src={dish.image}
-              alt={dish.name}
-              onError={() => handleImageError(dish.id)}
-              className="w-full h-full object-contain object-center rounded-lg group-hover:scale-105 transition-transform duration-300"
-            />
-          ) : (
-            <div className="w-full h-full rounded-lg bg-[#FAF8F5] border border-stone-200/60 flex flex-col items-center justify-center text-stone-300">
-              <Utensils className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.5] text-stone-300" />
-            </div>
-          )}
-        </div>
+        {/* Full Uncropped Image or Clean Empty Placeholder (Only rendered if hideImages is false) */}
+        {!hideImages && (
+          <div className="w-16 h-20 sm:w-20 sm:h-24 rounded-xl overflow-hidden bg-white border border-stone-200 shrink-0 shadow-xs p-1 flex items-center justify-center">
+            {dish.image && !failedImages[dish.id] ? (
+              <img
+                src={dish.image}
+                alt={dish.name}
+                onError={() => handleImageError(dish.id)}
+                className="w-full h-full object-contain object-center rounded-lg group-hover:scale-105 transition-transform duration-300"
+              />
+            ) : (
+              <div className="w-full h-full rounded-lg bg-[#FAF8F5] border border-stone-200/60 flex flex-col items-center justify-center text-stone-300">
+                <Utensils className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.5] text-stone-300" />
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Info */}
         <div className="space-y-1 min-w-0 flex-1">
@@ -98,7 +103,7 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate }
             )}
           </div>
 
-          <p className="text-[11px] text-stone-500 font-light leading-snug line-clamp-2 max-w-[220px] sm:max-w-xs md:max-w-sm">
+          <p className={`text-[11px] text-stone-500 font-light leading-snug line-clamp-2 ${hideImages ? 'max-w-none' : 'max-w-[220px] sm:max-w-xs md:max-w-sm'}`}>
             {dish.description}
           </p>
 
@@ -154,7 +159,7 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate }
           {/* Title & Breadcrumbs in Swedish */}
           <div className="text-center space-y-1">
             <h2 className="font-sans text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-stone-900">
-              SIMA DELI MENY
+              {hideImages ? 'SIMA DELI MENY 3 (TEXTMENY)' : 'SIMA DELI MENY'}
             </h2>
             <div className="text-xs text-stone-400 font-medium">
               <button
@@ -166,28 +171,29 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate }
               /{' '}
               <span className="text-[#c6a04a] font-semibold">Meny</span>{' '}
               /{' '}
-              <span>Persiska Delikatesser</span>
+              <span>{hideImages ? 'Meny 3 (Utan bilder)' : 'Meny 2 (Med bilder)'}</span>
             </div>
           </div>
 
-          {/* Hero Banner: Platter Photo on Left, Story on Right */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center bg-[#FAF8F5] p-6 sm:p-10 rounded-3xl border border-stone-200">
-            {/* Left: Complete Dish Photo without crop */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-sm rounded-3xl overflow-hidden shadow-xl ring-8 ring-white bg-white p-2.5 flex items-center justify-center">
-                <img
-                  src="/images/zereshk-polo.jpg"
-                  alt="Sima Deli Zereshkpolo"
-                  className="w-full h-auto max-h-80 sm:max-h-96 object-contain object-center rounded-2xl"
-                />
+          {/* Hero Banner: With or Without Food Image depending on hideImages */}
+          <div className={`grid grid-cols-1 ${hideImages ? 'lg:grid-cols-1 max-w-4xl mx-auto text-center' : 'lg:grid-cols-12'} gap-10 items-center bg-[#FAF8F5] p-6 sm:p-10 rounded-3xl border border-stone-200`}>
+            {!hideImages && (
+              <div className="lg:col-span-5 flex justify-center">
+                <div className="relative w-full max-w-sm rounded-3xl overflow-hidden shadow-xl ring-8 ring-white bg-white p-2.5 flex items-center justify-center">
+                  <img
+                    src="/images/zereshk-polo.jpg"
+                    alt="Sima Deli Zereshkpolo"
+                    className="w-full h-auto max-h-80 sm:max-h-96 object-contain object-center rounded-2xl"
+                  />
+                </div>
               </div>
-            </div>
+            )}
 
-            {/* Right: Swedish Header & Story */}
-            <div className="lg:col-span-7 space-y-4">
+            <div className={`${hideImages ? 'space-y-4 max-w-2xl mx-auto flex flex-col items-center' : 'lg:col-span-7 space-y-4'}`}>
               <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#c6a04a]">
                 <span>—</span>
                 <span>BÄSTA KVALITET</span>
+                {hideImages && <span>—</span>}
               </div>
 
               <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-stone-900 leading-tight">
@@ -198,7 +204,7 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate }
                 Sedan grundandet har Sima Deli serverat autentisk persisk mat med högsta kvalitet på Valhallavägen 120. Varje rätt är omsorgsfullt tillagad från grunden med handplockat saffran och färska örter.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 pt-2">
                 <button
                   onClick={() => onNavigate && onNavigate('/om-oss/')}
                   className="px-6 py-2.5 rounded-full bg-[#1C1917] hover:bg-stone-800 text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-sm flex items-center gap-2"
