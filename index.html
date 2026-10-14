@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="sv" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sima Deli | Persisk Deli & Restaurang Stockholm | Valhallavägen 120</title>
+    <meta name="description" content="Välkommen till Sima Deli på Valhallavägen 120 i Stockholm. Upplev mammas persiska mat i en varm och hemtrevlig atmosfär. Ät här, take-away, catering, matlådor och hemleverans." />
+    <meta name="keywords" content="Sima Deli, persisk restaurang Stockholm, persisk mat, Valhallavägen 120, Ghormeh Sabzi, Gheymeh, persiska matlådor, catering Stockholm, persisk frukost, mazeh" />
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="restaurant" />
+    <meta property="og:title" content="Sima Deli | Persisk Deli & Restaurang Stockholm" />
+    <meta property="og:description" content="Välkommen in och upplev mammas persiska mat i en varm och hemtrevlig atmosfär. Ät här eller take-away." />
+    <meta property="og:url" content="https://www.simadeli.com/" />
+    <meta property="og:image" content="/images/ghormeh-sabzi.jpg" />
+
+    <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Restaurant Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Sima Deli",
+      "image": "https://www.simadeli.com/wp-content/uploads/2023/03/Screenshot-2023-03-06-at-10.36.53-PM.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Valhallavägen 120",
+        "addressLocality": "Stockholm",
+        "postalCode": "114 41",
+        "addressCountry": "SE"
+      },
+      "telephone": "+4686603635",
+      "servesCuisine": "Persian, Middle Eastern",
+      "priceRange": "$$",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "10:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday", "Sunday"],
+          "opens": "10:00",
+          "closes": "17:00"
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body class="bg-[#FAF7F2] text-[#1C1917] font-sans antialiased selection:bg-[#c6a04a]/25 selection:text-[#1C1917]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
