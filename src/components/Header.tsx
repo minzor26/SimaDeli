@@ -34,8 +34,30 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
     };
   }, [mobileMenuOpen]);
 
-  // Close mobile menu on route change
-  const handleNavClick = (path: string) => {
+  const pathToSectionMap: Record<string, string> = {
+    '/om-oss/': 'om-oss',
+    '/meny/': 'meny',
+    '/catering/': 'catering',
+    '/sima-deli-matlador/': 'matlador',
+    '/hemleverans/': 'hem',
+    '/kontakt/': 'kontakt'
+  };
+
+  // Close mobile menu on route change & smooth scroll if on homepage
+  const handleNavClick = (path: string, forceNavigate = false) => {
+    if (!forceNavigate && (currentPath === '/' || currentPath === '')) {
+      const sectionId = pathToSectionMap[path];
+      if (sectionId) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          setMobileMenuOpen(false);
+          setDeliveryDropdownOpen(false);
+          setMenuDropdownOpen(false);
+          return;
+        }
+      }
+    }
     onNavigate(path);
     setMobileMenuOpen(false);
     setDeliveryDropdownOpen(false);
@@ -120,7 +142,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
                             href="/meny/"
                             onClick={(e) => {
                               e.preventDefault();
-                              handleNavClick('/meny/');
+                              handleNavClick('/meny/', true);
                             }}
                             className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-colors ${
                               currentPath === '/meny/' || currentPath === '/meny-2/'
@@ -137,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
                             href="/meny-3/"
                             onClick={(e) => {
                               e.preventDefault();
-                              handleNavClick('/meny-3/');
+                              handleNavClick('/meny-3/', true);
                             }}
                             className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-colors ${
                               currentPath === '/meny-3/'
@@ -321,7 +343,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
                           href="/meny/"
                           onClick={(e) => {
                             e.preventDefault();
-                            handleNavClick('/meny/');
+                            handleNavClick('/meny/', true);
                           }}
                           className={`flex items-center justify-between py-2 px-3 rounded-xl text-sm transition-colors ${
                             currentPath === '/meny/' || currentPath === '/meny-2/'
@@ -336,7 +358,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
                           href="/meny-3/"
                           onClick={(e) => {
                             e.preventDefault();
-                            handleNavClick('/meny-3/');
+                            handleNavClick('/meny-3/', true);
                           }}
                           className={`flex items-center justify-between py-2 px-3 rounded-xl text-sm transition-colors ${
                             currentPath === '/meny-3/'

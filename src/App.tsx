@@ -57,6 +57,22 @@ export function App() {
 
   // Navigate handler
   const handleNavigate = (path: string) => {
+    if (path.startsWith('/#') || path.startsWith('#')) {
+      const hash = path.startsWith('/#') ? path.substring(2) : path.substring(1);
+      if (currentPath !== '/') {
+        window.history.pushState({}, '', '/');
+        setCurrentPath('/');
+        setTimeout(() => {
+          const el = document.getElementById(hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        const el = document.getElementById(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+      return;
+    }
+
     const normalized = normalizePath(path);
     if (normalized !== currentPath) {
       window.history.pushState({}, '', normalized);
