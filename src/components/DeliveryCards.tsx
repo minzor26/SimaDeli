@@ -46,7 +46,7 @@ export const DeliveryCards: React.FC<DeliveryCardsProps> = ({ onNavigate }) => {
                       onNavigate(partner.url);
                     }
                   }}
-                  className="w-full py-3 px-4 rounded-xl bg-[#cdebf2]/30 group-hover:bg-[#c6a04a] text-[#1e5f6e] group-hover:text-white border border-[#cdebf2]/70 group-hover:border-[#c6a04a] text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200"
+                  className="w-full py-3 px-4 rounded-xl bg-[#cdebf2]/30 group-hover:bg-[#1C1917] text-[#1e5f6e] group-hover:text-white border border-[#cdebf2]/70 group-hover:border-[#1C1917] text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200"
                 >
                   <Clock className="w-3.5 h-3.5" />
                   <span>Läs mer</span>
