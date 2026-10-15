@@ -203,8 +203,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                 />
               </div>
 
-              {/* Bottom-Left Micro Feature Card: Outside circle */}
-              <div className="absolute -bottom-4 sm:-bottom-6 -left-2 sm:-left-4 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl shadow-xl flex items-center gap-3 z-30 hover:scale-105 transition-transform">
+              {/* Bottom-Left Micro Feature Card: Outside circle, positioned higher and further left to prevent any overlap with bottom badge */}
+              <div className="absolute bottom-10 sm:bottom-14 -left-3 sm:-left-8 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl shadow-xl flex items-center gap-3 z-30 hover:scale-105 transition-transform">
                 <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-gradient-to-br from-[#FAF7F2] to-[#CDEBF2]/60 border border-[#CDEBF2] flex items-center justify-center shrink-0 shadow-2xs">
                   <UtensilsCrossed className="w-4 h-4 text-[#1E5F6E]" />
                 </div>
