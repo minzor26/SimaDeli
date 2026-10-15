@@ -119,7 +119,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-20 py-6 sm:py-10">
           
           {/* Left: Brand Identity, Live Status & CTA */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
             
             {/* Live Stockholm Hours Status Badge */}
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#CDEBF2] shadow-2xs text-xs font-medium">
@@ -140,19 +140,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
               <img
                 src="/images/logo.png"
                 alt="Sima Deli Logo"
-                className="h-20 sm:h-28 md:h-32 w-auto object-contain drop-shadow-sm"
+                className="h-28 sm:h-36 md:h-44 w-auto object-contain drop-shadow-sm"
               />
             </div>
-
-            {/* Headline matching Sima Deli structure */}
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917] tracking-tight leading-[1.1]">
-              Persian <span className="text-[#C6A04A] italic">Soul Food</span> på Östermalm
-            </h1>
-
-            {/* Lede text */}
-            <p className="text-base sm:text-lg text-[#57534E] max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
-              Mammas persiska mat, lagad av mor och dotter med färska råvaror. Ät här eller ta med.
-            </p>
 
             {/* Primary Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
@@ -182,25 +172,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
               <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-[#CDEBF2] relative aspect-4/5 bg-white">
                 <img
                   src="/images/baghali-polo.jpg"
-                  alt="Baghali-Polo Mahiche - Långkokt lammlägg på Sima Deli"
+                  alt="Baghali-Polo Mahiche - Sima Deli"
                   className="w-full h-full object-cover"
                   fetchPriority="high"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1C1917]/75 via-transparent to-transparent" />
-                <div className="absolute bottom-5 left-5 right-5 text-white flex items-end justify-between">
-                  <div>
-                    <span className="text-[10px] uppercase tracking-widest text-[#CDEBF2] font-bold block mb-1">
-                      Signaturrätt
-                    </span>
-                    <h2 className="font-serif text-lg sm:text-xl font-bold">
-                      Baghali-Polo Mahiche
-                    </h2>
-                    <p className="text-xs text-white/80">Långkokt lammlägg med saffransris & dill</p>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-[#C6A04A] text-white font-serif font-bold text-xs shadow-xs">
-                    259 kr
-                  </span>
-                </div>
               </div>
 
               {/* Overlapping Secondary Dish: Ghormeh-Sabzi */}
@@ -211,12 +186,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/25" />
-                <div className="absolute bottom-2 left-2 right-2 text-white text-center">
-                  <span className="text-[10px] font-bold uppercase tracking-wider bg-[#1C1917]/85 px-2.5 py-1 rounded-full inline-block">
-                    Ghormeh-Sabzi
-                  </span>
-                </div>
               </div>
 
             </div>
