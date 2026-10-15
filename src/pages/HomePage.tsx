@@ -118,8 +118,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
 
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-20 py-6 sm:py-10">
           
-          {/* Left: Brand Identity, Live Status & CTA */}
-          <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
+          {/* Left: Brand Identity, Live Status, Heading, Subtitle & CTA */}
+          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             
             {/* Live Stockholm Hours Status Badge */}
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#CDEBF2] shadow-2xs text-xs font-medium">
@@ -135,14 +135,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
               <span className="text-[#57534E] hidden sm:inline">Valhallavägen 120, Östermalm</span>
             </div>
 
-            {/* Official Sima Deli Brand Logo */}
-            <div className="flex justify-center lg:justify-start">
-              <img
-                src="/images/logo.png"
-                alt="Sima Deli Logo"
-                className="h-28 sm:h-36 md:h-44 w-auto object-contain drop-shadow-sm"
-              />
-            </div>
+            {/* Headline as in Sima Deli.html */}
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917] tracking-tight leading-[1.1]">
+              Persian <span className="text-[#C6A04A] italic">Soul Food</span> på Östermalm
+            </h1>
+
+            {/* Subtitle as in Sima Deli.html */}
+            <p className="text-base sm:text-lg text-[#57534E] max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+              Mammas persiska mat, lagad av mor och dotter med färska råvaror. Ät här eller ta med.
+            </p>
 
             {/* Primary Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
@@ -164,28 +165,42 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
             </div>
           </div>
 
-          {/* Right: Authentic Sima Deli Food Photography */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+          {/* Right: Sima Deli Logo Showcase (Centered & full, without awkward empty space) */}
+          <div className="lg:col-span-5 relative flex items-center justify-center">
+            <div className="relative w-full max-w-[420px] aspect-square flex items-center justify-center">
               
-              {/* Primary Dish: Baghali-Polo Mahiche */}
-              <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-[#CDEBF2] relative aspect-4/5 bg-white">
-                <img
-                  src="/images/baghali-polo.jpg"
-                  alt="Baghali-Polo Mahiche - Sima Deli"
-                  className="w-full h-full object-cover"
-                  fetchPriority="high"
-                />
+              {/* Decorative concentric medallion layers inspired by plate motif in Sima Deli.html */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white via-[#FAF7F2] to-[#CDEBF2]/40 border-2 border-[#CDEBF2] shadow-xl" />
+              <div className="absolute inset-3 rounded-full border border-dashed border-[#CDEBF2] pointer-events-none" />
+              <div className="absolute inset-8 rounded-full bg-white/70 shadow-inner" />
+
+              {/* Top-Right Quality Chip */}
+              <div className="absolute -top-3 right-4 bg-white/95 backdrop-blur-xs border border-[#CDEBF2] px-3.5 py-1.5 rounded-full shadow-sm text-[11px] font-semibold text-[#1E5F6E] flex items-center gap-1.5 z-20">
+                <span className="w-2 h-2 rounded-full bg-[#C6A04A]" />
+                <span>Äkta Persiska Råvaror</span>
               </div>
 
-              {/* Overlapping Secondary Dish: Ghormeh-Sabzi */}
-              <div className="hidden sm:block absolute -bottom-6 -left-8 w-44 h-44 rounded-2xl overflow-hidden shadow-xl border-4 border-[#CDEBF2] bg-white">
+              {/* Centerpiece: Sima Deli Logo & Sub-details */}
+              <div className="relative z-10 flex flex-col items-center justify-center text-center p-6 space-y-3">
                 <img
-                  src="/images/ghormeh-sabzi.jpg"
-                  alt="Ghormeh-Sabzi"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
+                  src="/images/logo.png"
+                  alt="Sima Deli Logo"
+                  className="w-44 sm:w-52 md:w-56 h-auto object-contain drop-shadow-md transition-transform duration-300 hover:scale-105"
                 />
+                <div className="space-y-1">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2]/60 px-3 py-1 rounded-full border border-[#B8E2EC] inline-block">
+                    Persisk Deli & Restaurang
+                  </span>
+                  <p className="text-xs text-[#78716C] font-medium pt-0.5">
+                    Valhallavägen 120 • Östermalm
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom-Left Heritage Chip */}
+              <div className="absolute -bottom-2 left-4 bg-white/95 backdrop-blur-xs border border-[#CDEBF2] px-3.5 py-1.5 rounded-full shadow-sm text-[11px] font-semibold text-[#1C1917] flex items-center gap-1.5 z-20">
+                <span className="w-2 h-2 rounded-full bg-[#1E5F6E]" />
+                <span>Mammas Recept från Grunden</span>
               </div>
 
             </div>
