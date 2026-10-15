@@ -166,73 +166,65 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
             </div>
           </div>
 
-          {/* Right: Sima Deli Logo Medallion (Gold inner circle matching logo + elevated feature cards) */}
-          <div className="lg:col-span-5 relative flex items-center justify-center">
-            <div className="relative w-full max-w-[420px] aspect-square flex items-center justify-center">
+          {/* Right: Sima Deli Logo Medallion (Transparent Logo + Gold Circle + Well-spaced Cards) */}
+          <div className="lg:col-span-5 relative flex flex-col items-center justify-center pt-4 pb-6">
+            <div className="relative w-full max-w-[390px] aspect-square flex items-center justify-center">
               
               {/* Outer decorative ring with layered gradient and soft drop shadow */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white via-[#FAF7F2] to-[#CDEBF2]/50 border-2 border-[#CDEBF2] shadow-2xl" />
-              <div className="absolute inset-2.5 rounded-full border border-dashed border-[#CDEBF2] pointer-events-none" />
-              <div className="absolute inset-5 rounded-full border border-[#CAA332]/30 pointer-events-none" />
+              <div className="absolute inset-3 rounded-full border border-dashed border-[#CDEBF2] pointer-events-none" />
+              <div className="absolute inset-6 rounded-full border border-[#CAA332]/30 pointer-events-none" />
 
-              {/* Top-Right Micro Feature Card: Äkta Persiska Råvaror */}
-              <div className="absolute -top-3 sm:-top-5 -right-1 sm:right-2 bg-white/95 backdrop-blur-md border border-[#CDEBF2] p-2.5 sm:p-3 rounded-2xl shadow-xl flex items-center gap-2.5 sm:gap-3 z-30 hover:scale-105 transition-transform">
-                <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-gradient-to-br from-[#FAF7F2] to-[#CDEBF2]/50 border border-[#CDEBF2] text-[#CAA332] flex items-center justify-center shrink-0 shadow-2xs">
+              {/* Top-Right Micro Feature Card: Outside circle */}
+              <div className="absolute -top-4 sm:-top-6 -right-2 sm:-right-4 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl shadow-xl flex items-center gap-3 z-30 hover:scale-105 transition-transform">
+                <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-gradient-to-br from-[#FAF7F2] to-[#CDEBF2]/60 border border-[#CDEBF2] flex items-center justify-center shrink-0 shadow-2xs">
                   <Sparkles className="w-4 h-4 text-[#CAA332]" />
                 </div>
                 <div className="text-left">
                   <span className="text-xs font-bold text-[#1C1917] block leading-tight">
                     Äkta Persiska Råvaror
                   </span>
-                  <span className="text-[10px] text-[#78716C] font-medium block">
+                  <span className="text-[10px] text-[#78716C] font-medium block pt-0.5">
                     Saffran, berberisbär & örter
                   </span>
                 </div>
               </div>
 
-              {/* Inner Circle: Exact Gold #CAA332 matching logo background seamlessly */}
-              <div className="absolute inset-7 sm:inset-9 rounded-full bg-gradient-to-br from-[#d4ad39] via-[#caa332] to-[#b89128] border-4 border-white shadow-xl overflow-hidden flex flex-col items-center justify-center p-4 z-10">
+              {/* Inner Circle: Gold Medallion with 100% Transparent Logo */}
+              <div className="absolute inset-8 sm:inset-10 rounded-full bg-gradient-to-br from-[#d4ad39] via-[#caa332] to-[#b89128] border-4 border-white shadow-xl overflow-hidden flex items-center justify-center p-6 z-10">
                 {/* Subtle radial sheen over the gold medallion */}
                 <div className="absolute inset-0 bg-radial from-white/20 via-transparent to-black/15 pointer-events-none" />
 
-                {/* Sima Deli Logo - Seamlessly blends into matching gold #CAA332 */}
+                {/* Sima Deli Transparent Logo - ONLY the ice-blue letters on top of the gold background! */}
                 <img
-                  src="/images/logo.png"
+                  src="/images/logo-transparent.png"
                   alt="Sima Deli Logo"
-                  className="w-36 sm:w-44 md:w-48 h-auto object-contain drop-shadow-sm transition-transform duration-300 hover:scale-105 relative z-10"
+                  className="w-44 sm:w-52 h-auto object-contain drop-shadow-sm transition-transform duration-300 hover:scale-105 relative z-10"
                 />
-
-                {/* Elegant ribbon badge inside gold circle */}
-                <div className="mt-1 relative z-10">
-                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-[#1C1917] bg-white/95 backdrop-blur-xs px-3.5 py-1 rounded-full shadow-md border border-white inline-block">
-                    Persisk Deli & Restaurang
-                  </span>
-                </div>
               </div>
 
-              {/* Bottom-Left Micro Feature Card: Mammas Recept */}
-              <div className="absolute -bottom-3 sm:-bottom-5 -left-1 sm:left-2 bg-white/95 backdrop-blur-md border border-[#CDEBF2] p-2.5 sm:p-3 rounded-2xl shadow-xl flex items-center gap-2.5 sm:gap-3 z-30 hover:scale-105 transition-transform">
-                <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-gradient-to-br from-[#FAF7F2] to-[#CDEBF2]/50 border border-[#CDEBF2] text-[#1E5F6E] flex items-center justify-center shrink-0 shadow-2xs">
+              {/* Bottom-Left Micro Feature Card: Outside circle */}
+              <div className="absolute -bottom-4 sm:-bottom-6 -left-2 sm:-left-4 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl shadow-xl flex items-center gap-3 z-30 hover:scale-105 transition-transform">
+                <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-gradient-to-br from-[#FAF7F2] to-[#CDEBF2]/60 border border-[#CDEBF2] flex items-center justify-center shrink-0 shadow-2xs">
                   <UtensilsCrossed className="w-4 h-4 text-[#1E5F6E]" />
                 </div>
                 <div className="text-left">
                   <span className="text-xs font-bold text-[#1C1917] block leading-tight">
                     Mammas Recept
                   </span>
-                  <span className="text-[10px] text-[#78716C] font-medium block">
+                  <span className="text-[10px] text-[#78716C] font-medium block pt-0.5">
                     Lagad från grunden med kärlek
                   </span>
                 </div>
               </div>
 
-              {/* Bottom-Right Location Badge */}
-              <div className="absolute bottom-4 -right-1 sm:right-2 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3.5 py-1.5 rounded-full shadow-md flex items-center gap-2 z-20 hidden sm:flex">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                <span className="text-[10px] sm:text-[11px] font-semibold text-[#1C1917]">
-                  Valhallavägen 120 • Östermalm
-                </span>
-              </div>
+            </div>
 
+            {/* Clean sub-caption placed neatly below the medallion, outside the circle */}
+            <div className="mt-6 text-center z-10">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2]/60 px-4 py-1.5 rounded-full border border-[#B8E2EC] inline-block shadow-2xs">
+                Persisk Deli & Restaurang
+              </span>
             </div>
           </div>
 
