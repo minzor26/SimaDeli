@@ -203,16 +203,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                 />
               </div>
 
-              {/* Bottom-Left Micro Feature Card: Outside circle, positioned higher and further left to prevent any overlap with bottom badge */}
-              <div className="absolute bottom-10 sm:bottom-14 -left-3 sm:-left-8 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl shadow-xl flex items-center gap-3 z-30 hover:scale-105 transition-transform">
-                <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-gradient-to-br from-[#FAF7F2] to-[#CDEBF2]/60 border border-[#CDEBF2] flex items-center justify-center shrink-0 shadow-2xs">
-                  <UtensilsCrossed className="w-4 h-4 text-[#1E5F6E]" />
+              {/* Bottom-Left Micro Feature Card: Corner position, completely outside the inner gold circle */}
+              <div className="absolute bottom-2 sm:bottom-3 -left-4 sm:-left-16 lg:-left-22 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3 py-2 sm:px-4 sm:py-3 rounded-2xl shadow-xl flex items-center gap-2.5 sm:gap-3 z-30 hover:scale-105 transition-transform">
+                <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-[#FAF7F2] to-[#CDEBF2]/60 border border-[#CDEBF2] flex items-center justify-center shrink-0 shadow-2xs">
+                  <UtensilsCrossed className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#1E5F6E]" />
                 </div>
                 <div className="text-left">
-                  <span className="text-xs font-bold text-[#1C1917] block leading-tight">
+                  <span className="text-[11px] sm:text-xs font-bold text-[#1C1917] block leading-tight">
                     Mammas Recept
                   </span>
-                  <span className="text-[10px] text-[#78716C] font-medium block pt-0.5">
+                  <span className="text-[9px] sm:text-[10px] text-[#78716C] font-medium block pt-0.5">
                     Lagad från grunden med kärlek
                   </span>
                 </div>
@@ -220,8 +220,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
 
             </div>
 
-            {/* Clean sub-caption placed neatly below the medallion, outside the circle */}
-            <div className="mt-6 text-center z-10">
+            {/* Clean sub-caption placed neatly below the medallion, outside the circle with generous clearance */}
+            <div className="mt-8 sm:mt-10 text-center z-10">
               <span className="text-[11px] font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2]/60 px-4 py-1.5 rounded-full border border-[#B8E2EC] inline-block shadow-2xs">
                 Persisk Deli & Restaurang
               </span>
