@@ -157,9 +157,9 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, 
         {/* ========================================================================= */}
         <div className="space-y-12">
           {/* Title & Breadcrumbs in Swedish */}
-          <div className="text-center space-y-1">
+          <div className="text-center space-y-2">
             <h2 className="font-sans text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-stone-900">
-              {hideImages ? 'SIMA DELI MENY 3 (TEXTMENY)' : 'SIMA DELI MENY'}
+              {hideImages ? 'SIMA DELI MENY 3 (TEXTMENY)' : 'SIMA DELI MENY 2'}
             </h2>
             <div className="text-xs text-stone-400 font-medium">
               <button
@@ -172,6 +172,30 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, 
               <span className="text-[#c6a04a] font-semibold">Meny</span>{' '}
               /{' '}
               <span>{hideImages ? 'Meny 3 (Utan bilder)' : 'Meny 2 (Med bilder)'}</span>
+            </div>
+
+            {/* Quick Switcher between Menu 2 and Menu 3 */}
+            <div className="flex items-center justify-center gap-2 pt-2">
+              <button
+                onClick={() => onNavigate && onNavigate('/meny/')}
+                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                  !hideImages
+                    ? 'bg-[#1E5F6E] text-white shadow-xs'
+                    : 'bg-white text-stone-700 border border-stone-300 hover:bg-stone-100'
+                }`}
+              >
+                Menu 2 (Med bilder)
+              </button>
+              <button
+                onClick={() => onNavigate && onNavigate('/meny-3/')}
+                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                  hideImages
+                    ? 'bg-[#1E5F6E] text-white shadow-xs'
+                    : 'bg-white text-stone-700 border border-stone-300 hover:bg-stone-100'
+                }`}
+              >
+                Menu 3 (Utan bilder)
+              </button>
             </div>
           </div>
 

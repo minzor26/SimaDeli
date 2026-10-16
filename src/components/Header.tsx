@@ -49,11 +49,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#FAF7F2]/95 backdrop-blur-md shadow-xs border-b border-[#E7E0D8]/80 py-3'
-            : 'bg-[#FAF7F2]/90 backdrop-blur-xs py-4 sm:py-5'
+            ? 'bg-[#FAF7F2]/95 backdrop-blur-md shadow-xs border-b border-[#E7E0D8]/80'
+            : 'bg-[#FAF7F2]/95 backdrop-blur-xs'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-all duration-300 ${
+          isScrolled ? 'py-2.5 sm:py-3' : 'py-3.5 sm:py-4'
+        }`}>
           {/* Brand / Logo */}
           <a
             href="/"
@@ -256,6 +258,21 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
             </button>
           </div>
         </div>
+
+        {/* Persian Tile Band from Sima Deli reference */}
+        <div
+          className="w-full h-1.5 sm:h-2"
+          style={{
+            background: `
+              linear-gradient(45deg, #1E5F6E 25%, transparent 25%) 0 0 / 16px 16px,
+              linear-gradient(-45deg, #1E5F6E 25%, transparent 25%) 0 0 / 16px 16px,
+              linear-gradient(45deg, transparent 75%, #CAA332 75%) 0 0 / 16px 16px,
+              linear-gradient(-45deg, transparent 75%, #A3203B 75%) 0 0 / 16px 16px
+            `,
+            backgroundColor: '#FAF7F2'
+          }}
+          aria-hidden="true"
+        />
       </header>
 
       {/* FULL-SCREEN MOBILE & TABLET NAVIGATION DRAWER */}
