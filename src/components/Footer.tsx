@@ -59,7 +59,37 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
               Sidor & Meny
             </h3>
             <ul className="space-y-2.5 text-xs text-[#E7E5E4]">
-              {NAV_LINKS.map((link) => (
+              <li>
+                <a
+                  href="/meny/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('/meny/');
+                  }}
+                  className="hover:text-[#cdebf2] transition-colors flex items-center justify-between group"
+                >
+                  <span>Menu 2 (Med bilder)</span>
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#c6a04a]">
+                    →
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/meny-3/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('/meny-3/');
+                  }}
+                  className="hover:text-[#cdebf2] transition-colors flex items-center justify-between group"
+                >
+                  <span>Menu 3 (Utan bilder)</span>
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#c6a04a]">
+                    →
+                  </span>
+                </a>
+              </li>
+              {NAV_LINKS.filter((l) => l.name !== 'Meny').map((link) => (
                 <li key={link.path}>
                   <a
                     href={link.path}

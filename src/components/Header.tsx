@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { NAV_LINKS, RESTAURANT_INFO } from '../data/siteData';
-import { Menu as MenuIcon, X, Calendar, MapPin, Phone } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { NAV_LINKS, MENU_NAV_OPTIONS, RESTAURANT_INFO } from '../data/siteData';
+import { Menu as MenuIcon, X, ChevronDown, Calendar, MapPin, Phone, Image, FileText } from 'lucide-react';
 
 interface HeaderProps {
   currentPath: string;
@@ -11,9 +11,10 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenBooking }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>('top');
+  const [menuDropdownOpen, setMenuDropdownOpen] = useState(false);
+  const dropdownTimeoutRef = useRef<number | null>(null);
 
-  // Handle scroll detection for header background styling
+  // Handle scroll detection for sticky header background
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -21,27 +22,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Track active section on homepage for smooth scroll navigation highlighting
-  useEffect(() => {
-    if (currentPath !== '/') return;
-
-    const sections = ['top', 'meny', 'om-oss', 'catering', 'matlador', 'hem', 'kontakt'];
-    const handleSectionScroll = () => {
-      const scrollPos = window.scrollY + 140;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const sec = document.getElementById(sections[i]);
-        if (sec && sec.offsetTop <= scrollPos) {
-          setActiveSection(sections[i]);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleSectionScroll, { passive: true });
-    handleSectionScroll();
-    return () => window.removeEventListener('scroll', handleSectionScroll);
-  }, [currentPath]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -55,11 +35,25 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
     };
   }, [mobileMenuOpen]);
 
-  // Clean navigation handler: smooth scroll on homepage or direct route navigation
+  // Clean navigation handler: smoothly redirects to the separate page
   const handleNavClick = (path: string) => {
     onNavigate(path);
     setMobileMenuOpen(false);
+    setMenuDropdownOpen(false);
   };
+
+  const handleMouseEnter = () => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setMenuDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setMenuDropdownOpen(false);
+    }, 150);
+  };
+
+  const isMenuPath = currentPath.startsWith('/meny') || currentPath.startsWith('/menu');
 
   return (
     <>
@@ -98,13 +92,98 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
             </div>
           </a>
 
-          {/* Desktop Navigation: Simple, clean and smooth as simadeli.html */}
+          {/* Desktop Navigation: Multi-page navigation with smooth menu dropdown */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Huvudmeny">
             {NAV_LINKS.map((link) => {
-              const isSectionActive = currentPath === '/' && activeSection === link.id;
-              const isPageActive = currentPath === link.pagePath;
-              const isActive = isSectionActive || isPageActive;
+              // Special smooth dropdown for Meny
+              if (link.name === 'Meny') {
+                return (
+                  <div
+                    key={link.path}
+                    className="relative"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <a
+                      href={link.path}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavClick(link.path);
+                      }}
+                      className={`px-4 py-2 text-sm font-medium transition-colors rounded-full flex items-center gap-1.5 ${
+                        isMenuPath
+                          ? 'bg-[#CDEBF2] text-[#1E5F6E] font-bold border border-[#B8E2EC]'
+                          : 'text-[#1C1917]/85 hover:text-[#1C1917] hover:bg-[#CDEBF2]/30'
+                      }`}
+                    >
+                      <span>Meny</span>
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                          menuDropdownOpen ? 'rotate-180 text-[#1E5F6E]' : 'opacity-70'
+                        }`}
+                      />
+                    </a>
 
+                    {/* Smooth Menu Dropdown: Image wala & Bina Image wala */}
+                    {menuDropdownOpen && (
+                      <div className="absolute top-full left-0 w-64 pt-2 z-50 animate-fadeIn">
+                        <div className="bg-white rounded-2xl shadow-xl border border-[#CDEBF2] p-2 space-y-1">
+                          <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#1E5F6E] bg-[#CDEBF2]/40 rounded-lg">
+                            Välj Menyversion
+                          </div>
+                          {MENU_NAV_OPTIONS.map((opt) => {
+                            const isSelected = currentPath === opt.path;
+                            return (
+                              <a
+                                key={opt.path}
+                                href={opt.path}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  handleNavClick(opt.path);
+                                }}
+                                className={`flex items-start gap-3 p-2.5 rounded-xl transition-all ${
+                                  isSelected
+                                    ? 'bg-[#CDEBF2] text-[#1E5F6E]'
+                                    : 'hover:bg-[#FAF7F2] text-[#1C1917]'
+                                }`}
+                              >
+                                <div className={`p-2 rounded-lg shrink-0 mt-0.5 ${
+                                  isSelected ? 'bg-white text-[#1E5F6E]' : 'bg-[#FAF7F2] text-[#78716C]'
+                                }`}>
+                                  {opt.path === '/meny/' ? (
+                                    <Image className="w-4 h-4 text-[#C6A04A]" />
+                                  ) : (
+                                    <FileText className="w-4 h-4 text-[#1E5F6E]" />
+                                  )}
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center justify-between gap-1">
+                                    <span className="text-xs font-bold block truncate">
+                                      {opt.name}
+                                    </span>
+                                    <span className={`text-[9px] font-semibold uppercase px-1.5 py-0.2 rounded-full border ${
+                                      isSelected
+                                        ? 'bg-white text-[#1E5F6E] border-transparent'
+                                        : 'bg-[#FAF7F2] text-[#78716C] border-[#E7E0D8]'
+                                    }`}>
+                                      {opt.badge}
+                                    </span>
+                                  </div>
+                                  <span className="text-[11px] text-[#78716C] font-light block leading-tight pt-0.5">
+                                    {opt.desc}
+                                  </span>
+                                </div>
+                              </a>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              const isActive = currentPath === link.path;
               return (
                 <a
                   key={link.path}
@@ -113,10 +192,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
                     e.preventDefault();
                     handleNavClick(link.path);
                   }}
-                  className={`px-3.5 py-1.5 text-sm transition-colors rounded-full font-medium ${
+                  className={`px-4 py-2 text-sm transition-colors rounded-full font-medium ${
                     isActive
                       ? 'bg-[#CDEBF2] text-[#1E5F6E] font-bold border border-[#B8E2EC]'
-                      : 'text-[#1C1917]/80 hover:text-[#1C1917] hover:bg-[#CDEBF2]/30'
+                      : 'text-[#1C1917]/85 hover:text-[#1C1917] hover:bg-[#CDEBF2]/30'
                   }`}
                 >
                   {link.name}
@@ -188,12 +267,60 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
           <div className="flex-1 overflow-y-auto px-5 sm:px-8 py-6 space-y-6">
             
             {/* Primary navigation list */}
-            <div className="space-y-1">
-              {NAV_LINKS.map((link) => {
-                const isSectionActive = currentPath === '/' && activeSection === link.id;
-                const isPageActive = currentPath === link.pagePath;
-                const isActive = isSectionActive || isPageActive;
+            <div className="space-y-2">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#1E5F6E] block px-2 mb-1">
+                Sidor & Navigation
+              </span>
 
+              {/* Meny Section with both Menu Pages */}
+              <div className="bg-white rounded-2xl border border-[#CDEBF2] p-3 space-y-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#1C1917] block px-1">
+                  Meny (Välj version)
+                </span>
+                <div className="grid grid-cols-1 gap-1.5">
+                  <a
+                    href="/meny/"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick('/meny/');
+                    }}
+                    className={`flex items-center justify-between p-3 rounded-xl text-sm font-semibold transition-colors ${
+                      currentPath === '/meny/' || currentPath === '/meny-2/'
+                        ? 'bg-[#CDEBF2] text-[#1E5F6E]'
+                        : 'bg-[#FAF7F2] text-[#1C1917] hover:bg-[#CDEBF2]/30'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <Image className="w-4 h-4 text-[#C6A04A]" />
+                      <span>Menu 2 (Med bilder)</span>
+                    </div>
+                    <span className="text-xs text-[#78716C]">→</span>
+                  </a>
+
+                  <a
+                    href="/meny-3/"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick('/meny-3/');
+                    }}
+                    className={`flex items-center justify-between p-3 rounded-xl text-sm font-semibold transition-colors ${
+                      currentPath === '/meny-3/'
+                        ? 'bg-[#CDEBF2] text-[#1E5F6E]'
+                        : 'bg-[#FAF7F2] text-[#1C1917] hover:bg-[#CDEBF2]/30'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <FileText className="w-4 h-4 text-[#1E5F6E]" />
+                      <span>Menu 3 (Utan bilder)</span>
+                    </div>
+                    <span className="text-xs text-[#78716C]">→</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Other Pages */}
+              {NAV_LINKS.filter((l) => l.name !== 'Meny').map((link) => {
+                const isActive = currentPath === link.path;
                 return (
                   <a
                     key={link.path}
@@ -202,7 +329,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
                       e.preventDefault();
                       handleNavClick(link.path);
                     }}
-                    className={`flex items-center justify-between py-3 px-4 rounded-xl text-lg font-serif transition-colors ${
+                    className={`flex items-center justify-between py-3 px-4 rounded-xl text-base font-serif transition-colors ${
                       isActive
                         ? 'bg-[#CDEBF2] text-[#1E5F6E] font-bold border border-[#B8E2EC] shadow-2xs'
                         : 'text-[#1C1917] hover:bg-[#CDEBF2]/30'
@@ -215,35 +342,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
                   </a>
                 );
               })}
-            </div>
-
-            {/* Quick Menu Page Direct Links */}
-            <div className="p-3 bg-[#FAF7F2] border border-[#E7E0D8] rounded-2xl space-y-2">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#78716C] block px-1">
-                Restaurangmeny
-              </span>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <a
-                  href="/meny/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick('/meny/');
-                  }}
-                  className="p-2.5 bg-white border border-[#E7E0D8] rounded-xl text-center font-semibold text-[#1C1917] hover:bg-[#CDEBF2]/30 transition-colors"
-                >
-                  Menu 2 (Med bilder)
-                </a>
-                <a
-                  href="/meny-3/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick('/meny-3/');
-                  }}
-                  className="p-2.5 bg-white border border-[#E7E0D8] rounded-xl text-center font-semibold text-[#1C1917] hover:bg-[#CDEBF2]/30 transition-colors"
-                >
-                  Menu 3 (Utan bilder)
-                </a>
-              </div>
             </div>
 
             {/* Boka Bord Primary Action in Drawer */}

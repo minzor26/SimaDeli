@@ -83,12 +83,27 @@ export const DELIVERY_PARTNERS = [
 ];
 
 export const NAV_LINKS = [
-  { name: "Meny", path: "/#meny", id: "meny", pagePath: "/meny/" },
-  { name: "Om oss", path: "/#om-oss", id: "om-oss", pagePath: "/om-oss/" },
-  { name: "Catering", path: "/#catering", id: "catering", pagePath: "/catering/" },
-  { name: "Matlådor", path: "/#matlador", id: "matlador", pagePath: "/sima-deli-matlador/" },
-  { name: "Beställ hem", path: "/#hem", id: "hem", pagePath: "/hemleverans/" },
-  { name: "Kontakt", path: "/#kontakt", id: "kontakt", pagePath: "/kontakt/" }
+  { name: "Meny", path: "/meny/" },
+  { name: "Om oss", path: "/om-oss/" },
+  { name: "Catering", path: "/catering/" },
+  { name: "Matlådor", path: "/sima-deli-matlador/" },
+  { name: "Beställ hem", path: "/hemleverans/" },
+  { name: "Kontakt", path: "/kontakt/" }
+];
+
+export const MENU_NAV_OPTIONS = [
+  {
+    name: "Menu 2 (Med bilder)",
+    path: "/meny/",
+    badge: "Bilder",
+    desc: "Med bilder på rätter"
+  },
+  {
+    name: "Menu 3 (Utan bilder)",
+    path: "/meny-3/",
+    badge: "Utan bilder",
+    desc: "Klassisk ren textmeny"
+  }
 ];
 
 export const MENU_CATEGORIES = [
