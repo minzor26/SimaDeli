@@ -81,12 +81,12 @@ export const KontaktPage: React.FC = () => {
 
       </div>
 
-      {/* Map & Message Split */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      {/* Map & Message Split - Equal Height Containers */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
         
         {/* Left: Authentic Google Maps Embed from original website */}
-        <div className="lg:col-span-7 bg-white rounded-3xl overflow-hidden border border-[#cdebf2] shadow-xs">
-          <div className="p-6 border-b border-[#cdebf2] bg-[#cdebf2]/30 flex items-center justify-between">
+        <div className="lg:col-span-7 bg-white rounded-3xl overflow-hidden border border-[#cdebf2] shadow-xs flex flex-col h-full">
+          <div className="p-6 border-b border-[#cdebf2] bg-[#cdebf2]/30 flex items-center justify-between shrink-0">
             <div>
               <h3 className="font-serif text-xl font-bold text-[#1C1917]">
                 Karta & Vägbeskrivning
@@ -105,18 +105,18 @@ export const KontaktPage: React.FC = () => {
             </a>
           </div>
 
-          <div className="w-full h-[400px]">
+          <div className="w-full flex-1 min-h-[380px]">
             <iframe
               src={RESTAURANT_INFO.googleMapsEmbed}
               title="Sima Deli Google Maps Plats"
-              className="w-full h-full border-0"
+              className="w-full h-full min-h-[380px] border-0 block"
               loading="lazy"
             />
           </div>
         </div>
 
         {/* Right: Message Form & Socials */}
-        <div className="lg:col-span-5 bg-white rounded-3xl p-8 border border-[#cdebf2] shadow-xs space-y-6">
+        <div className="lg:col-span-5 bg-white rounded-3xl p-8 border border-[#cdebf2] shadow-xs space-y-6 flex flex-col justify-between h-full">
           <div>
             <h3 className="font-serif text-2xl font-bold text-[#1C1917] mb-1">
               Skicka ett meddelande
