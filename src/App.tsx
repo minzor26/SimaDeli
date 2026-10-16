@@ -61,18 +61,32 @@ export function App() {
 
   // Navigate handler
   const handleNavigate = (path: string) => {
-    if (path.startsWith('/#') || path.startsWith('#')) {
-      const hash = path.startsWith('/#') ? path.substring(2) : path.substring(1);
+    if (path === '/' || path === '/#top' || path === '#top') {
       if (currentPath !== '/') {
         window.history.pushState({}, '', '/');
         setCurrentPath('/');
-        setTimeout(() => {
-          const el = document.getElementById(hash);
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else {
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (path.startsWith('/#') || path.startsWith('#')) {
+      const hash = path.startsWith('/#') ? path.substring(2) : path.substring(1);
+      const scrollToElement = () => {
         const el = document.getElementById(hash);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        if (el) {
+          const yOffset = -76;
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        }
+      };
+
+      if (currentPath !== '/') {
+        window.history.pushState({}, '', '/');
+        setCurrentPath('/');
+        setTimeout(scrollToElement, 100);
+      } else {
+        scrollToElement();
       }
       return;
     }

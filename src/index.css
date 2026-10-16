@@ -37,6 +37,7 @@
 
 /* Base styling */
 html {
+  scroll-behavior: smooth;
   font-family: var(--font-sans);
   background-color: var(--color-cream);
   color: var(--color-charcoal);

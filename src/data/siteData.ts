@@ -83,12 +83,12 @@ export const DELIVERY_PARTNERS = [
 ];
 
 export const NAV_LINKS = [
-  { name: "Meny", path: "/meny/" },
-  { name: "Om oss", path: "/om-oss/" },
-  { name: "Catering", path: "/catering/" },
-  { name: "Matlådor", path: "/sima-deli-matlador/" },
-  { name: "Beställ hem", path: "/hemleverans/" },
-  { name: "Kontakt", path: "/kontakt/" }
+  { name: "Meny", path: "/#meny", id: "meny", pagePath: "/meny/" },
+  { name: "Om oss", path: "/#om-oss", id: "om-oss", pagePath: "/om-oss/" },
+  { name: "Catering", path: "/#catering", id: "catering", pagePath: "/catering/" },
+  { name: "Matlådor", path: "/#matlador", id: "matlador", pagePath: "/sima-deli-matlador/" },
+  { name: "Beställ hem", path: "/#hem", id: "hem", pagePath: "/hemleverans/" },
+  { name: "Kontakt", path: "/#kontakt", id: "kontakt", pagePath: "/kontakt/" }
 ];
 
 export const MENU_CATEGORIES = [
