@@ -100,13 +100,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
 
   const activeTabConfig = TABS.find((t) => t.id === activeTab) || TABS[0];
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div className="space-y-20 sm:space-y-28 pb-16">
       
@@ -149,7 +142,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
             {/* Primary Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
               <button
-                onClick={() => scrollToSection('meny')}
+                onClick={() => onNavigate('/meny/')}
                 className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#C6A04A] hover:bg-[#B08D3B] text-white font-semibold text-xs sm:text-sm tracking-wider uppercase shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <UtensilsCrossed className="w-4 h-4" />
@@ -274,7 +267,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
 
             {/* Tile 2: Ta med */}
             <div
-              onClick={() => scrollToSection('meny')}
+              onClick={() => onNavigate('/meny/')}
               className="group p-5 rounded-2xl bg-[#FAF7F2] border border-[#CDEBF2] hover:border-[#C6A04A] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
             >
               <div>
@@ -296,7 +289,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
 
             {/* Tile 3: Få hemlevererat */}
             <div
-              onClick={() => scrollToSection('hem')}
+              onClick={() => onNavigate('/hemleverans/')}
               className="group p-5 rounded-2xl bg-[#FAF7F2] border border-[#CDEBF2] hover:border-[#C6A04A] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
             >
               <div>
@@ -318,7 +311,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
 
             {/* Tile 4: Catering */}
             <div
-              onClick={() => scrollToSection('catering')}
+              onClick={() => onNavigate('/catering/')}
               className="group p-5 rounded-2xl bg-[#FAF7F2] border border-[#CDEBF2] hover:border-[#C6A04A] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
             >
               <div>
@@ -340,7 +333,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
 
             {/* Tile 5: Matlådor */}
             <div
-              onClick={() => scrollToSection('matlador')}
+              onClick={() => onNavigate('/sima-deli-matlador/')}
               className="group p-5 rounded-2xl bg-[#FAF7F2] border border-[#CDEBF2] hover:border-[#C6A04A] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
             >
               <div>

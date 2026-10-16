@@ -34,30 +34,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
     };
   }, [mobileMenuOpen]);
 
-  const pathToSectionMap: Record<string, string> = {
-    '/om-oss/': 'om-oss',
-    '/meny/': 'meny',
-    '/catering/': 'catering',
-    '/sima-deli-matlador/': 'matlador',
-    '/hemleverans/': 'hem',
-    '/kontakt/': 'kontakt'
-  };
-
-  // Close mobile menu on route change & smooth scroll if on homepage
-  const handleNavClick = (path: string, forceNavigate = false) => {
-    if (!forceNavigate && (currentPath === '/' || currentPath === '')) {
-      const sectionId = pathToSectionMap[path];
-      if (sectionId) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-          setMobileMenuOpen(false);
-          setDeliveryDropdownOpen(false);
-          setMenuDropdownOpen(false);
-          return;
-        }
-      }
-    }
+  // Close mobile menu on route change & navigate directly to separate page
+  const handleNavClick = (path: string) => {
     onNavigate(path);
     setMobileMenuOpen(false);
     setDeliveryDropdownOpen(false);
@@ -139,10 +117,27 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
                         </div>
                         <div className="space-y-0.5">
                           <a
+                            href="/meny-1/"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleNavClick('/meny-1/');
+                            }}
+                            className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-colors ${
+                              currentPath === '/meny-1/'
+                                ? 'bg-[#CDEBF2] text-[#1E5F6E] font-bold'
+                                : 'text-[#1C1917] hover:bg-[#CDEBF2]/40'
+                            }`}
+                          >
+                            <span className="font-semibold">Menu 1</span>
+                            <span className="text-[11px] text-[#78716C] font-light">
+                              Klassisk
+                            </span>
+                          </a>
+                          <a
                             href="/meny/"
                             onClick={(e) => {
                               e.preventDefault();
-                              handleNavClick('/meny/', true);
+                              handleNavClick('/meny/');
                             }}
                             className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-colors ${
                               currentPath === '/meny/' || currentPath === '/meny-2/'
@@ -159,7 +154,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
                             href="/meny-3/"
                             onClick={(e) => {
                               e.preventDefault();
-                              handleNavClick('/meny-3/', true);
+                              handleNavClick('/meny-3/');
                             }}
                             className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-colors ${
                               currentPath === '/meny-3/'
@@ -335,15 +330,39 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
                             : 'text-[#1C1917] hover:bg-[#CDEBF2]/30'
                         }`}
                       >
-                        <span>{link.name}</span>
-                        <ChevronDown className="w-4 h-4 text-[#1E5F6E]" />
-                      </div>
-                      <div className="pl-4 space-y-1 pt-0.5">
                         <a
                           href="/meny/"
                           onClick={(e) => {
                             e.preventDefault();
-                            handleNavClick('/meny/', true);
+                            handleNavClick('/meny/');
+                          }}
+                          className="flex-1"
+                        >
+                          {link.name}
+                        </a>
+                        <ChevronDown className="w-4 h-4 text-[#1E5F6E]" />
+                      </div>
+                      <div className="pl-4 space-y-1 pt-0.5">
+                        <a
+                          href="/meny-1/"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleNavClick('/meny-1/');
+                          }}
+                          className={`flex items-center justify-between py-2 px-3 rounded-xl text-sm transition-colors ${
+                            currentPath === '/meny-1/'
+                              ? 'bg-[#1E5F6E] text-white font-semibold'
+                              : 'text-[#1C1917]/80 hover:bg-[#CDEBF2]/30'
+                          }`}
+                        >
+                          <span>Menu 1</span>
+                          <span className="text-xs">→</span>
+                        </a>
+                        <a
+                          href="/meny/"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleNavClick('/meny/');
                           }}
                           className={`flex items-center justify-between py-2 px-3 rounded-xl text-sm transition-colors ${
                             currentPath === '/meny/' || currentPath === '/meny-2/'
@@ -358,7 +377,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenB
                           href="/meny-3/"
                           onClick={(e) => {
                             e.preventDefault();
-                            handleNavClick('/meny-3/', true);
+                            handleNavClick('/meny-3/');
                           }}
                           className={`flex items-center justify-between py-2 px-3 rounded-xl text-sm transition-colors ${
                             currentPath === '/meny-3/'

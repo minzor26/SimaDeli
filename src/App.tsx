@@ -12,6 +12,7 @@ import { HemleveransPage } from './pages/HemleveransPage';
 import { SimaExpressPage } from './pages/SimaExpressPage';
 import { KontaktPage } from './pages/KontaktPage';
 import { BookingPage } from './pages/BookingPage';
+import { SubscriptionPage } from './pages/SubscriptionPage';
 
 export function App() {
   // Normalize pathname: always ensure trailing slash for routing comparison
@@ -41,13 +42,18 @@ export function App() {
     const titleMap: Record<string, string> = {
       '/': 'Sima Deli | Persisk Deli & Restaurang Stockholm | Valhallavägen 120',
       '/om-oss/': 'Om Oss | Sima Deli - Äkta Persisk Matlagning Stockholm',
-      '/meny/': 'Meny 2: The Greatest Table | Sima Deli Stockholm',
+      '/meny/': 'Meny | Sima Deli Stockholm',
+      '/meny-1/': 'Meny 1 | Sima Deli Stockholm',
+      '/menu-1/': 'Meny 1 | Sima Deli Stockholm',
       '/meny-2/': 'Meny 2: The Greatest Table | Sima Deli Stockholm',
+      '/menu-2/': 'Meny 2: The Greatest Table | Sima Deli Stockholm',
       '/meny-3/': 'Meny 3: Textmeny (Utan bilder) | Sima Deli Stockholm',
+      '/menu-3/': 'Meny 3: Textmeny (Utan bilder) | Sima Deli Stockholm',
       '/catering/': 'Catering & Abonnering | Sima Deli Stockholm',
       '/sima-deli-matlador/': 'Sima Deli Matlådor | Återförsäljare i Butik runt Stockholm',
       '/hemleverans/': 'Hemleverans | Sima Deli via Wolt, Foodora & Uber Eats',
       '/sima-express/': 'Sima Express | Snabb leverans från Sima Deli',
+      '/subscription/': 'Prenumeration | Sima Deli Matlådor',
       '/kontakt/': 'Kontakt & Öppettider | Sima Deli Valhallavägen 120',
       '/booking/': 'Boka Bord Online | Sima Deli Stockholm'
     };
@@ -87,18 +93,29 @@ export function App() {
       case '/om-oss/':
         return <OmOssPage onOpenBooking={() => setIsBookingModalOpen(true)} onNavigate={handleNavigate} />;
       case '/meny/':
+      case '/meny-1/':
+      case '/menu-1/':
       case '/meny-2/':
+      case '/menu-2/':
+      case '/menu/':
+      case '/meny-4/':
+      case '/meny-5/':
+      case '/meny-8/':
         return <MenyPage onOpenBooking={() => setIsBookingModalOpen(true)} onNavigate={handleNavigate} />;
       case '/meny-3/':
+      case '/menu-3/':
         return <MenyPage3 onOpenBooking={() => setIsBookingModalOpen(true)} onNavigate={handleNavigate} />;
       case '/catering/':
         return <CateringPage />;
       case '/sima-deli-matlador/':
+      case '/matlador/':
         return <MatladorPage />;
       case '/hemleverans/':
         return <HemleveransPage onNavigate={handleNavigate} />;
       case '/sima-express/':
         return <SimaExpressPage onNavigate={handleNavigate} />;
+      case '/subscription/':
+        return <SubscriptionPage />;
       case '/kontakt/':
         return <KontaktPage />;
       case '/booking/':
