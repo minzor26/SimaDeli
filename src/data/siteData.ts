@@ -83,7 +83,7 @@ export const DELIVERY_PARTNERS = [
 ];
 
 export const NAV_LINKS = [
-  { name: "Meny", path: "/meny-3/" },
+  { name: "Meny", path: "/meny/" },
   { name: "Om oss", path: "/om-oss/" },
   { name: "Catering", path: "/catering/" },
   { name: "Matlådor", path: "/sima-deli-matlador/" },
