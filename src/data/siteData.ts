@@ -649,21 +649,21 @@ export const FEATURED_PRODUCTS: MenuItem[] = [
     category: "Varma persiska rätter",
     description: "Mörstekt ox-tunga tillagad i fyllig persisk kryddbuljong, serveras med Sangak/Barbari bröd, citron, lök och Torshi.",
     price: "229 kr",
-    note: "Delikatesssoppa",
+    note: "Delikatess-soppa",
     image: "/images/zaboon.jpg"
   },
   {
     id: "mazeh-tallrik",
-    name: "Maze Tallrik",
+    name: "Mazeh-Tallrik",
     category: "Mazeh-tallrik",
-    description: "Generös tallrik kombinerad med 3 valfria Mazeh från deli-disken (t.ex. Koo-koo, Olovie och Kashke-bademjan).",
+    description: "Generös tallrik kombinerad med 3 valfria Mazeh från deli-disken (t.ex. Koo-koo, Olovieh och Kashke-Bademjan).",
     price: "189 kr",
     note: "Mest Sålda",
     image: "/images/mazeh-tallrik.jpg"
   },
   {
     id: "olovieh-skal",
-    name: "Olovie",
+    name: "Olovieh",
     category: "Tillbehör & Mazeh / Wraps",
     description: "Klassisk persisk kyckling- och potatisröra med ägg, majonnäs, grönärtor och krispig saltgurka.",
     price: "119 kr",
@@ -682,7 +682,7 @@ export const FEATURED_PRODUCTS: MenuItem[] = [
   },
   {
     id: "mastomoosir",
-    name: "Mastmoosir",
+    name: "Mastomoosir",
     category: "Tillbehör & Mazeh",
     description: "Krämig persisk matlagningsyoghurt smaksatt med torkad vildlök och färsk mynta.",
     price: "39 kr",
@@ -692,7 +692,7 @@ export const FEATURED_PRODUCTS: MenuItem[] = [
   },
   {
     id: "salad-shirazi",
-    name: "Shirazi-Sallad",
+    name: "Salad Shirazi",
     category: "Tillbehör & Mazeh",
     description: "Fint tärnad gurka, tomat och rödlök slungad med färskpressad citronsaft, jungfruolivolja och torkad mynta.",
     price: "39 kr",
@@ -702,9 +702,9 @@ export const FEATURED_PRODUCTS: MenuItem[] = [
   },
   {
     id: "zereshk-polo",
-    name: "Zereshkpolo",
+    name: "Zereshk-Polo ba Morgh",
     category: "Varma persiska rätter",
-    description: "Marinerad kycklingfilé i fyllig tomatsås, serveras med saffranris, zereshk berberisbär och mandel/pistage.",
+    description: "Marinerad kycklingfilé i fyllig tomatsås, serveras med saffransris, zereshk (berberis bär) och mandel/pistage.",
     price: "189 kr",
     note: "Persisk Klassiker",
     image: "/images/zereshk-polo.jpg"
@@ -730,7 +730,7 @@ export const FEATURED_PRODUCTS: MenuItem[] = [
   },
   {
     id: "sholeh-zard",
-    name: "Sholezard",
+    name: "Sholeh Zard",
     category: "Något sött",
     description: "Persisk rispudding smaksatt med saffran, kanel, pistagenötter, mandel och rosenblad.",
     price: "59 kr",

@@ -156,11 +156,8 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, 
         {/* 1. TOP HEADER & HERO SECTION                                              */}
         {/* ========================================================================= */}
         <div className="space-y-12">
-          {/* Title & Breadcrumbs in Swedish */}
-          <div className="text-center space-y-2">
-            <h2 className="font-sans text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-stone-900">
-              SIMA DELI MENY
-            </h2>
+          {/* Breadcrumbs in Swedish */}
+          <div className="text-center">
             <div className="text-xs text-stone-400 font-medium">
               <button
                 onClick={() => onNavigate && onNavigate('/')}
