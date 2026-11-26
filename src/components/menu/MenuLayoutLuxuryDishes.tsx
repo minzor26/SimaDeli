@@ -8,7 +8,7 @@ interface MenuLayoutProps {
   hideImages?: boolean;
 }
 
-export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, hideImages = false }) => {
+export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, hideImages = true }) => {
   const [addedItem, setAddedItem] = useState<string | null>(null);
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
@@ -159,7 +159,7 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, 
           {/* Title & Breadcrumbs in Swedish */}
           <div className="text-center space-y-2">
             <h2 className="font-sans text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-stone-900">
-              {hideImages ? 'SIMA DELI MENY 3 (TEXTMENY)' : 'SIMA DELI MENY 2'}
+              SIMA DELI MENY
             </h2>
             <div className="text-xs text-stone-400 font-medium">
               <button
@@ -169,33 +169,7 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, 
                 Hem
               </button>{' '}
               /{' '}
-              <span className="text-[#c6a04a] font-semibold">Meny</span>{' '}
-              /{' '}
-              <span>{hideImages ? 'Meny 3 (Utan bilder)' : 'Meny 2 (Med bilder)'}</span>
-            </div>
-
-            {/* Quick Switcher between Menu 2 and Menu 3 */}
-            <div className="flex items-center justify-center gap-2 pt-2">
-              <button
-                onClick={() => onNavigate && onNavigate('/meny/')}
-                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                  !hideImages
-                    ? 'bg-[#1E5F6E] text-white shadow-xs'
-                    : 'bg-white text-stone-700 border border-stone-300 hover:bg-stone-100'
-                }`}
-              >
-                Menu 2 (Med bilder)
-              </button>
-              <button
-                onClick={() => onNavigate && onNavigate('/meny-3/')}
-                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                  hideImages
-                    ? 'bg-[#1E5F6E] text-white shadow-xs'
-                    : 'bg-white text-stone-700 border border-stone-300 hover:bg-stone-100'
-                }`}
-              >
-                Menu 3 (Utan bilder)
-              </button>
+              <span className="text-[#c6a04a] font-semibold">Meny</span>
             </div>
           </div>
 
@@ -247,37 +221,15 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, 
             </div>
           </div>
 
-          {/* 2. STAT COUNTERS ROW */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 pt-4 border-b border-stone-200 pb-10 text-center md:text-left">
-            <div className="col-span-2 md:col-span-1 flex items-center gap-2 text-xs text-stone-500 font-medium">
-              <Sparkles className="w-4 h-4 text-[#c6a04a] shrink-0" />
-              <span>Passion för traditionell persisk matlagning sedan starten</span>
-            </div>
-
-            <div className="space-y-0.5">
-              <div className="font-sans text-2xl sm:text-3xl font-bold text-stone-900">200+</div>
-              <div className="text-[11px] uppercase tracking-wider text-stone-500">DAGLIGA GÄSTER</div>
-            </div>
-
-            <div className="space-y-0.5">
-              <div className="font-sans text-2xl sm:text-3xl font-bold text-stone-900">200+</div>
-              <div className="text-[11px] uppercase tracking-wider text-stone-500">LEVERANSER I MÅNADEN</div>
-            </div>
-
-            <div className="space-y-0.5">
-              <div className="font-sans text-2xl sm:text-3xl font-bold text-stone-900">1000+</div>
-              <div className="text-[11px] uppercase tracking-wider text-stone-500">NÖJDA GÄSTER</div>
-            </div>
-
-            <div className="space-y-0.5">
-              <div className="font-sans text-2xl sm:text-3xl font-bold text-stone-900">40+</div>
-              <div className="text-[11px] uppercase tracking-wider text-stone-500">UNIKA PERSISKA RÄTTER</div>
-            </div>
+          {/* SUBTLE PASSION STATEMENT */}
+          <div className="flex items-center justify-center gap-2.5 text-center text-xs sm:text-sm text-stone-500 font-medium px-4">
+            <Sparkles className="w-4 h-4 text-[#c6a04a] shrink-0" />
+            <span>Passion för traditionell persisk matlagning sedan starten</span>
           </div>
 
           {/* CATEGORY JUMP NAVIGATION BAR */}
           <div className="sticky top-16 sm:top-20 z-30 bg-[#FAF8F5]/95 backdrop-blur-md py-3 border-y border-stone-200/80 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth">
+            <div className="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto no-scrollbar scroll-smooth">
               {categoriesNav.map((cat) => (
                 <button
                   key={cat.id}

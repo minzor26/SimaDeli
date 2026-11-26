@@ -83,27 +83,12 @@ export const DELIVERY_PARTNERS = [
 ];
 
 export const NAV_LINKS = [
-  { name: "Meny", path: "/meny/" },
+  { name: "Meny", path: "/meny-3/" },
   { name: "Om oss", path: "/om-oss/" },
   { name: "Catering", path: "/catering/" },
   { name: "Matlådor", path: "/sima-deli-matlador/" },
   { name: "Beställ hem", path: "/hemleverans/" },
   { name: "Kontakt", path: "/kontakt/" }
-];
-
-export const MENU_NAV_OPTIONS = [
-  {
-    name: "Menu 2 (Med bilder)",
-    path: "/meny/",
-    badge: "Bilder",
-    desc: "Med bilder på rätter"
-  },
-  {
-    name: "Menu 3 (Utan bilder)",
-    path: "/meny-3/",
-    badge: "Utan bilder",
-    desc: "Klassisk ren textmeny"
-  }
 ];
 
 export const MENU_CATEGORIES = [

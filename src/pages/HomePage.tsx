@@ -142,7 +142,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
             {/* Primary Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
               <button
-                onClick={() => onNavigate('/meny/')}
+                onClick={() => onNavigate('/meny-3/')}
                 className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#C6A04A] hover:bg-[#B08D3B] text-white font-semibold text-xs sm:text-sm tracking-wider uppercase shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <UtensilsCrossed className="w-4 h-4" />
@@ -267,7 +267,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
 
             {/* Tile 2: Ta med */}
             <div
-              onClick={() => onNavigate('/meny/')}
+              onClick={() => onNavigate('/meny-3/')}
               className="group p-5 rounded-2xl bg-[#FAF7F2] border border-[#CDEBF2] hover:border-[#C6A04A] hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
             >
               <div>
@@ -483,36 +483,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
           ))}
         </div>
 
-        {/* Menu Navigation Callouts (Menu 2 med bilder & Menu 3 utan bilder) */}
+        {/* Menu Navigation Callout */}
         <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-[#FAF7F2] border border-[#CDEBF2] text-center space-y-4">
           <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1C1917]">
             Utforska hela vår kompletta restaurangmeny
           </h3>
           <p className="text-xs sm:text-sm text-[#57534E] max-w-xl mx-auto">
-            Välj mellan vår visuella fotomeny med detaljerade bilder på alla rätter, eller vår snabba textmeny utan bilder.
+            Se alla våra persiska rätter, mazeh, sallader, wraps, frukost och drycker samlade på ett ställe.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            <a
-              href="/meny/"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate('/meny/');
-              }}
-              className="px-6 py-3 rounded-full bg-[#C6A04A] hover:bg-[#B08D3B] text-white font-semibold text-xs uppercase tracking-wider shadow-sm transition-colors flex items-center gap-2"
-            >
-              <span>Se Menu 2 (Med bilder)</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
-
             <a
               href="/meny-3/"
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate('/meny-3/');
               }}
-              className="px-6 py-3 rounded-full bg-white hover:bg-[#CDEBF2]/50 text-[#1C1917] border border-[#CDEBF2] font-semibold text-xs uppercase tracking-wider transition-colors flex items-center gap-2"
+              className="px-6 py-3 rounded-full bg-[#C6A04A] hover:bg-[#B08D3B] text-white font-semibold text-xs uppercase tracking-wider shadow-sm transition-colors flex items-center gap-2"
             >
-              <span>Se Menu 3 (Utan bilder)</span>
+              <span>Se hela menyn</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
 
