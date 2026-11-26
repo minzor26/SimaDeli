@@ -124,13 +124,13 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, 
       {/* Price & Action Button */}
       <div className="flex items-center gap-2 shrink-0 self-center">
         {dish.price && (
-          <span className="font-sans text-xs sm:text-sm font-bold text-stone-900 text-right sm:whitespace-nowrap max-w-[110px] sm:max-w-none">
+          <span className="font-sans text-xs sm:text-sm font-bold text-stone-900 whitespace-nowrap">
             {dish.price}
           </span>
         )}
         <button
           onClick={() => handleOrder(dish.name)}
-          className="w-7 h-7 rounded-full bg-[#E07A5F] hover:bg-[#c6654c] text-white flex items-center justify-center transition-colors cursor-pointer shadow-xs shrink-0"
+          className="w-7 h-7 rounded-full bg-[#E07A5F] hover:bg-[#c6654c] text-white flex items-center justify-center transition-colors cursor-pointer shadow-xs"
           title={`Beställ ${dish.name}`}
           aria-label={`Beställ ${dish.name}`}
         >
@@ -141,21 +141,21 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, 
   );
 
   return (
-    <div className="w-full min-h-screen bg-[#FAF8F5] pt-24 sm:pt-28 pb-16 sm:pb-24 font-sans animate-fadeIn text-stone-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14 sm:space-y-20">
+    <div className="w-full min-h-screen bg-[#FAF8F5] pt-24 sm:pt-28 pb-24 font-sans animate-fadeIn text-stone-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
         
         {/* Toast Alert */}
         {addedItem && (
-          <div className="fixed top-20 sm:top-24 right-4 sm:right-8 left-4 sm:left-auto z-50 bg-[#1C1917] text-white px-5 py-3 rounded-2xl shadow-xl flex items-center justify-center sm:justify-start gap-3 text-xs border border-stone-700 animate-slideDown">
-            <Sparkles className="w-4 h-4 text-[#c6a04a] shrink-0" />
-            <span className="truncate">Tillagd: <strong>{addedItem}</strong></span>
+          <div className="fixed top-24 right-8 z-50 bg-[#1C1917] text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs border border-stone-700 animate-slideDown">
+            <Sparkles className="w-4 h-4 text-[#c6a04a]" />
+            <span>Tillagd: <strong>{addedItem}</strong></span>
           </div>
         )}
 
         {/* ========================================================================= */}
         {/* 1. TOP HEADER & HERO SECTION                                              */}
         {/* ========================================================================= */}
-        <div className="space-y-8 sm:space-y-12">
+        <div className="space-y-12">
           {/* Breadcrumbs in Swedish */}
           <div className="text-center">
             <div className="text-xs text-stone-400 font-medium">
@@ -171,7 +171,7 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, 
           </div>
 
           {/* Hero Banner: With or Without Food Image depending on hideImages */}
-          <div className={`grid grid-cols-1 ${hideImages ? 'lg:grid-cols-1 max-w-4xl mx-auto text-center' : 'lg:grid-cols-12'} gap-8 sm:gap-10 items-center bg-[#FAF8F5] p-5 sm:p-10 rounded-3xl border border-stone-200`}>
+          <div className={`grid grid-cols-1 ${hideImages ? 'lg:grid-cols-1 max-w-4xl mx-auto text-center' : 'lg:grid-cols-12'} gap-10 items-center bg-[#FAF8F5] p-6 sm:p-10 rounded-3xl border border-stone-200`}>
             {!hideImages && (
               <div className="lg:col-span-5 flex justify-center">
                 <div className="relative w-full max-w-sm rounded-3xl overflow-hidden shadow-xl ring-8 ring-white bg-white p-2.5 flex items-center justify-center">
