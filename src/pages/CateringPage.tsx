@@ -19,24 +19,24 @@ export const CateringPage: React.FC = () => {
   };
 
   return (
-    <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <div className="pt-24 sm:pt-28 pb-16 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
       
       {/* Title */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <span className="text-xs font-bold uppercase tracking-widest text-[#c6a04a] bg-[#cdebf2]/40 px-3 py-1 rounded-full border border-[#cdebf2]">
           Catering & Abonnering
         </span>
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917]">
+        <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917]">
           Catering för alla tillfällen
         </h1>
-        <p className="font-serif text-xl sm:text-2xl text-[#1e5f6e] italic font-medium">
+        <p className="font-serif text-lg sm:text-2xl text-[#1e5f6e] italic font-medium">
           “{CATERING_INFO.intro}”
         </p>
       </div>
 
       {/* Hero Presentation */}
-      <div className="bg-gradient-to-br from-[#cdebf2]/30 via-[#FAF7F2] to-[#FAF7F2] rounded-3xl border border-[#cdebf2] p-8 sm:p-12 lg:p-16 shadow-2xs">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="bg-gradient-to-br from-[#cdebf2]/30 via-[#FAF7F2] to-[#FAF7F2] rounded-3xl border border-[#cdebf2] p-5 sm:p-12 lg:p-16 shadow-2xs">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           <div className="lg:col-span-6 space-y-6">
             <h2 className="font-serif text-3xl font-bold text-[#1C1917]">
@@ -68,19 +68,19 @@ export const CateringPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-4 flex items-center gap-4 text-xs font-semibold">
+            <div className="pt-4 flex flex-wrap items-center gap-4 text-xs font-semibold">
               <a
                 href={`mailto:${RESTAURANT_INFO.email}`}
-                className="px-6 py-3 rounded-full bg-[#c6a04a] hover:bg-[#b08d3b] text-white transition-colors shadow-xs flex items-center gap-2"
+                className="w-full sm:w-auto px-5 sm:px-6 py-3 rounded-full bg-[#c6a04a] hover:bg-[#b08d3b] text-white transition-colors shadow-xs flex items-center justify-center gap-2 text-center"
               >
-                <Mail className="w-4 h-4" />
-                <span>Kontakta via email info@simadeli.com</span>
+                <Mail className="w-4 h-4 shrink-0" />
+                <span className="break-all sm:break-normal">Kontakta via email info@simadeli.com</span>
               </a>
             </div>
           </div>
 
           {/* Form */}
-          <div className="lg:col-span-6 bg-white rounded-2xl p-6 sm:p-8 border border-[#cdebf2] shadow-md">
+          <div className="lg:col-span-6 bg-white rounded-2xl p-5 sm:p-8 border border-[#cdebf2] shadow-md">
             <h3 className="font-serif text-2xl font-bold text-[#1C1917] mb-2">
               Skicka en cateringförfrågan
             </h3>

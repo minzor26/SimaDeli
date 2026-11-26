@@ -16,12 +16,12 @@ export const SimaExpressPage: React.FC<SimaExpressPageProps> = () => {
   };
 
   return (
-    <div className="pt-28 pb-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div className="pt-24 sm:pt-28 pb-16 sm:pb-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
       
       {/* Main Announcement Box */}
-      <div className="bg-gradient-to-br from-[#cdebf2]/50 via-[#FAF7F2] to-[#FAF7F2] rounded-3xl border-2 border-[#cdebf2] p-8 sm:p-14 text-center space-y-6 shadow-xs">
-        <div className="w-16 h-16 rounded-full bg-[#cdebf2] flex items-center justify-center text-[#1e5f6e] border-2 border-[#b8e2ec] mx-auto shadow-2xs">
-          <Clock className="w-8 h-8" />
+      <div className="bg-gradient-to-br from-[#cdebf2]/50 via-[#FAF7F2] to-[#FAF7F2] rounded-3xl border-2 border-[#cdebf2] p-6 sm:p-14 text-center space-y-5 sm:space-y-6 shadow-xs">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#cdebf2] flex items-center justify-center text-[#1e5f6e] border-2 border-[#b8e2ec] mx-auto shadow-2xs">
+          <Clock className="w-7 h-7 sm:w-8 sm:h-8" />
         </div>
 
         <span className="text-xs font-bold uppercase tracking-widest text-[#c6a04a] bg-white/80 px-3 py-1 rounded-full border border-[#cdebf2] inline-block">
@@ -29,7 +29,7 @@ export const SimaExpressPage: React.FC<SimaExpressPageProps> = () => {
         </span>
 
         {/* Exact Swedish text from original website */}
-        <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1C1917] max-w-2xl mx-auto leading-tight">
+        <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-[#1C1917] max-w-2xl mx-auto leading-tight">
           Denna tjänst kommer att vara tillgänglig inom kort
         </h1>
 
@@ -41,22 +41,22 @@ export const SimaExpressPage: React.FC<SimaExpressPageProps> = () => {
         <div className="max-w-md mx-auto pt-2">
           {subscribed ? (
             <div className="p-4 bg-[#cdebf2]/40 rounded-xl flex items-center justify-center gap-2 text-xs font-semibold text-[#1e5f6e] border border-[#cdebf2]">
-              <CheckCircle2 className="w-4 h-4" />
+              <CheckCircle2 className="w-4 h-4 shrink-0" />
               <span>Tack! Vi meddelar dig så fort Sima Express lanseras.</span>
             </div>
           ) : (
-            <form onSubmit={handleSubscribe} className="flex gap-2">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2.5 sm:gap-2">
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Fyll i din e-postadress"
-                className="flex-1 px-4 py-3 rounded-full bg-white border border-[#cdebf2] focus:border-[#c6a04a] focus:outline-hidden text-xs text-[#1C1917]"
+                className="w-full sm:flex-1 px-4 py-3 rounded-full bg-white border border-[#cdebf2] focus:border-[#c6a04a] focus:outline-hidden text-xs text-[#1C1917]"
               />
               <button
                 type="submit"
-                className="px-6 py-3 rounded-full bg-[#c6a04a] hover:bg-[#b08d3b] text-white text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer shadow-xs shrink-0"
+                className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#c6a04a] hover:bg-[#b08d3b] text-white text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer shadow-xs shrink-0"
               >
                 Meddela mig
               </button>

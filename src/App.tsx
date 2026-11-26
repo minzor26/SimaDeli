@@ -128,7 +128,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1C1917]">
+    <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1C1917] overflow-x-clip">
       {/* Global Navigation Header */}
       <Header
         currentPath={currentPath}

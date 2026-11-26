@@ -18,14 +18,14 @@ export const KontaktPage: React.FC = () => {
   };
 
   return (
-    <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <div className="pt-24 sm:pt-28 pb-16 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
       
       {/* Editorial Title */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <span className="text-xs font-bold uppercase tracking-widest text-[#c6a04a] bg-[#cdebf2]/40 px-3 py-1 rounded-full border border-[#cdebf2]">
           Hitta hit & Kom i kontakt
         </span>
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917]">
+        <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917]">
           Kontakt
         </h1>
         <p className="text-sm sm:text-base text-[#57534E] leading-relaxed max-w-xl mx-auto font-light">
@@ -82,11 +82,11 @@ export const KontaktPage: React.FC = () => {
       </div>
 
       {/* Map & Message Split - Equal Height Containers */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
         
         {/* Left: Authentic Google Maps Embed from original website */}
         <div className="lg:col-span-7 bg-white rounded-3xl overflow-hidden border border-[#cdebf2] shadow-xs flex flex-col h-full">
-          <div className="p-6 border-b border-[#cdebf2] bg-[#cdebf2]/30 flex items-center justify-between shrink-0">
+          <div className="p-5 sm:p-6 border-b border-[#cdebf2] bg-[#cdebf2]/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shrink-0">
             <div>
               <h3 className="font-serif text-xl font-bold text-[#1C1917]">
                 Karta & Vägbeskrivning
@@ -99,24 +99,24 @@ export const KontaktPage: React.FC = () => {
               href="https://www.google.com/maps/dir/?api=1&destination=Valhallavägen+120+Stockholm"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-bold text-[#1e5f6e] hover:text-[#c6a04a] hover:underline"
+              className="text-xs font-bold text-[#1e5f6e] hover:text-[#c6a04a] hover:underline shrink-0"
             >
               Hitta rutt →
             </a>
           </div>
 
-          <div className="w-full flex-1 min-h-[380px]">
+          <div className="w-full flex-1 min-h-[280px] sm:min-h-[380px]">
             <iframe
               src={RESTAURANT_INFO.googleMapsEmbed}
               title="Sima Deli Google Maps Plats"
-              className="w-full h-full min-h-[380px] border-0 block"
+              className="w-full h-full min-h-[280px] sm:min-h-[380px] border-0 block"
               loading="lazy"
             />
           </div>
         </div>
 
         {/* Right: Message Form & Socials */}
-        <div className="lg:col-span-5 bg-white rounded-3xl p-8 border border-[#cdebf2] shadow-xs space-y-6 flex flex-col justify-between h-full">
+        <div className="lg:col-span-5 bg-white rounded-3xl p-5 sm:p-8 border border-[#cdebf2] shadow-xs space-y-6 flex flex-col justify-between h-full">
           <div>
             <h3 className="font-serif text-2xl font-bold text-[#1C1917] mb-1">
               Skicka ett meddelande
@@ -199,7 +199,7 @@ export const KontaktPage: React.FC = () => {
             </form>
           )}
 
-          <div className="pt-4 border-t border-[#cdebf2]/60 flex items-center justify-between text-xs text-[#78716C]">
+          <div className="pt-4 border-t border-[#cdebf2]/60 flex flex-wrap items-center justify-between gap-3 text-xs text-[#78716C]">
             <span>Följ oss på sociala medier:</span>
             <div className="flex gap-2">
               <a

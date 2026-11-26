@@ -178,9 +178,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#78716C] gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#78716C] gap-4 text-center sm:text-left">
           <p>© Sima Deli 2026. Alla rättigheter förbehållna.</p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <a
               href="/sima-deli-matlador/"
               onClick={(e) => {

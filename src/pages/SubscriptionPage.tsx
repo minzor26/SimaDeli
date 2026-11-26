@@ -16,14 +16,14 @@ export const SubscriptionPage: React.FC = () => {
   };
 
   return (
-    <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <div className="pt-24 sm:pt-28 pb-16 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
       
       {/* Title */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <span className="text-xs font-bold uppercase tracking-widest text-[#c6a04a] bg-[#cdebf2]/40 px-3 py-1 rounded-full border border-[#cdebf2]">
           Nyhetsbrev & VIP Medlemskap
         </span>
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917]">
+        <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917]">
           Subscription
         </h1>
         <p className="text-sm sm:text-base text-[#57534E] leading-relaxed max-w-xl mx-auto font-light">
@@ -32,7 +32,7 @@ export const SubscriptionPage: React.FC = () => {
       </div>
 
       {/* Main Form Box */}
-      <div className="max-w-xl mx-auto bg-white rounded-3xl p-8 sm:p-12 border border-[#cdebf2] shadow-lg">
+      <div className="max-w-xl mx-auto bg-white rounded-3xl p-5 sm:p-12 border border-[#cdebf2] shadow-lg">
         {submitted ? (
           <div className="py-8 text-center space-y-4">
             <div className="w-14 h-14 rounded-full bg-[#cdebf2] flex items-center justify-center text-[#1e5f6e] border-2 border-[#b8e2ec] mx-auto shadow-2xs">
@@ -124,27 +124,27 @@ export const SubscriptionPage: React.FC = () => {
       </div>
 
       {/* Restaurant details card */}
-      <div className="bg-gradient-to-br from-[#cdebf2]/30 via-[#FAF7F2] to-[#FAF7F2] rounded-3xl p-8 border border-[#cdebf2] max-w-xl mx-auto space-y-4 text-xs text-[#57534E] shadow-2xs">
+      <div className="bg-gradient-to-br from-[#cdebf2]/30 via-[#FAF7F2] to-[#FAF7F2] rounded-3xl p-5 sm:p-8 border border-[#cdebf2] max-w-xl mx-auto space-y-4 text-xs text-[#57534E] shadow-2xs">
         <h4 className="font-serif text-lg font-bold text-[#1C1917] text-center">
           Sima Deli Stockholm
         </h4>
-        <div className="space-y-2 border-t border-[#cdebf2]/60 pt-4">
-          <p className="flex justify-between">
+        <div className="space-y-2.5 border-t border-[#cdebf2]/60 pt-4">
+          <p className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-4">
             <span className="font-medium text-[#1C1917]">Adress:</span>
             <span>{RESTAURANT_INFO.address.street}, {RESTAURANT_INFO.address.postalCode} {RESTAURANT_INFO.address.city}</span>
           </p>
-          <p className="flex justify-between">
+          <p className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-4">
             <span className="font-medium text-[#1C1917]">Telefon:</span>
             <a href={`tel:${RESTAURANT_INFO.phoneRaw}`} className="underline text-[#1e5f6e] font-semibold">{RESTAURANT_INFO.phone}</a>
           </p>
-          <p className="flex justify-between">
+          <p className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-4">
             <span className="font-medium text-[#1C1917]">Email:</span>
-            <a href={`mailto:${RESTAURANT_INFO.email}`} className="underline text-[#1e5f6e] font-semibold">{RESTAURANT_INFO.email}</a>
+            <a href={`mailto:${RESTAURANT_INFO.email}`} className="underline text-[#1e5f6e] font-semibold break-all">{RESTAURANT_INFO.email}</a>
           </p>
-          <div className="pt-2 border-t border-[#cdebf2]/60">
+          <div className="pt-2 border-t border-[#cdebf2]/60 space-y-1">
             <span className="font-medium text-[#1C1917] block mb-1">Öppettider:</span>
             {RESTAURANT_INFO.hours.map((h, i) => (
-              <p key={i} className="flex justify-between text-[#78716C]">
+              <p key={i} className="flex flex-wrap justify-between gap-2 text-[#78716C]">
                 <span>{h.days}:</span>
                 <span>{h.time}</span>
               </p>

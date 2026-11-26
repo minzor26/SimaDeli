@@ -4,14 +4,14 @@ import { Phone, ExternalLink, Info } from 'lucide-react';
 
 export const BookingPage: React.FC = () => {
   return (
-    <div className="pt-28 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <div className="pt-24 sm:pt-28 pb-16 sm:pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
       
       {/* Editorial Title */}
       <div className="text-center max-w-2xl mx-auto space-y-4">
         <span className="text-xs font-bold uppercase tracking-widest text-[#c6a04a] bg-[#cdebf2]/40 px-3 py-1 rounded-full border border-[#cdebf2]">
           Bordsbokning Online
         </span>
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917]">
+        <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917]">
           Boka Bord
         </h1>
         <p className="text-sm sm:text-base text-[#57534E] leading-relaxed font-light">
@@ -20,12 +20,12 @@ export const BookingPage: React.FC = () => {
       </div>
 
       {/* Main Reservation Card with authentic TheFork / LaFourchette iframe */}
-      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#cdebf2] shadow-xl space-y-6">
+      <div className="bg-white rounded-3xl p-4 sm:p-8 border border-[#cdebf2] shadow-xl space-y-5 sm:space-y-6">
         <div className="rounded-2xl overflow-hidden border-2 border-[#cdebf2] bg-[#FAF7F2]">
           <iframe
             src={RESTAURANT_INFO.bookingEmbedUrl}
             title="Boka bord på Sima Deli via TheFork"
-            className="w-full h-[520px] sm:h-[580px] border-0"
+            className="w-full h-[420px] sm:h-[580px] border-0"
             loading="eager"
           />
         </div>

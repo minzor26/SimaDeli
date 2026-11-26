@@ -36,16 +36,16 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
       />
 
       {/* Modal Card */}
-      <div className="relative bg-[#FAF7F2] rounded-2xl shadow-2xl border-2 border-[#cdebf2] max-w-2xl w-full z-10 overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative bg-[#FAF7F2] rounded-2xl shadow-2xl border-2 border-[#cdebf2] max-w-2xl w-full max-h-[92vh] overflow-y-auto z-10 my-auto animate-in fade-in zoom-in-95 duration-200">
         
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#cdebf2] bg-gradient-to-r from-[#cdebf2]/40 via-[#F4EFEA] to-[#F4EFEA]">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 bg-[#cdebf2] rounded-full text-[#1e5f6e] border border-[#b8e2ec]">
+        <div className="flex items-center justify-between px-4 py-3.5 sm:px-6 sm:py-4 border-b border-[#cdebf2] bg-gradient-to-r from-[#cdebf2]/40 via-[#F4EFEA] to-[#F4EFEA] sticky top-0 z-10">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="p-2 bg-[#cdebf2] rounded-full text-[#1e5f6e] border border-[#b8e2ec] shrink-0">
               <Calendar className="w-5 h-5" />
             </div>
-            <div>
-              <h3 className="font-serif text-xl font-bold text-[#1C1917]">
+            <div className="min-w-0">
+              <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1C1917] truncate">
                 Boka Bord på Sima Deli
               </h3>
               <p className="text-xs text-[#57534E]">
@@ -55,7 +55,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full text-[#78716C] hover:text-[#1C1917] hover:bg-[#cdebf2]/40 transition-colors focus:outline-hidden cursor-pointer"
+            className="p-1.5 rounded-full text-[#78716C] hover:text-[#1C1917] hover:bg-[#cdebf2]/40 transition-colors focus:outline-hidden cursor-pointer shrink-0"
             aria-label="Stäng"
           >
             <X className="w-5 h-5" />
@@ -63,13 +63,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-5">
+        <div className="p-4 sm:p-6 space-y-4 sm:space-y-5">
           {/* Authentic LaFourchette / TheFork Embed */}
           <div className="rounded-xl overflow-hidden border-2 border-[#cdebf2] bg-white shadow-inner">
             <iframe
               src={RESTAURANT_INFO.bookingEmbedUrl}
               title="Boka bord på Sima Deli via TheFork"
-              className="w-full h-[380px] sm:h-[420px] border-0"
+              className="w-full h-[320px] sm:h-[420px] border-0"
               loading="lazy"
             />
           </div>

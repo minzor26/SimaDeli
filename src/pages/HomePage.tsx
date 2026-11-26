@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { RESTAURANT_INFO, MENU_ITEMS } from '../data/siteData';
+import React, { useMemo } from 'react';
+import { RESTAURANT_INFO } from '../data/siteData';
 import { DeliveryCards } from '../components/DeliveryCards';
 import { getStockholmStatus, WEEKDAYS_SV } from '../utils/stockholmTime';
 import {
@@ -23,94 +23,20 @@ interface HomePageProps {
   onOpenBooking: () => void;
 }
 
-type MenuCategoryTab = 'varma' | 'mazeh' | 'sallad-wrap' | 'frukost' | 'sott' | 'drycker';
-
-interface TabConfig {
-  id: MenuCategoryTab;
-  label: string;
-  note: string;
-}
-
-const TABS: TabConfig[] = [
-  {
-    id: 'varma',
-    label: 'Varma rätter',
-    note: 'Rätterna serveras med saffransris.'
-  },
-  {
-    id: 'mazeh',
-    label: 'Mazeh',
-    note: 'Mazeh-tallrik: välj 3 valfria mazeh från deli-disken för 189 kr. Köp dem också var för sig, liten eller stor.'
-  },
-  {
-    id: 'sallad-wrap',
-    label: 'Sallader & Wraps',
-    note: 'Alla sallader serveras med blandsallad, gurka, tomat och säsongens grönsaker.'
-  },
-  {
-    id: 'frukost',
-    label: 'Frukost',
-    note: 'Barbari-bröd ingår i alla frukosträtter. Extra bröd 20 kr.'
-  },
-  {
-    id: 'sott',
-    label: 'Sött & Tillbehör',
-    note: 'Baklava och shirini innehåller smör och nötter.'
-  },
-  {
-    id: 'drycker',
-    label: 'Drycker',
-    note: 'Kaffe, persiskt chai-te och kalla drycker.'
-  }
-];
-
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking }) => {
-  const [activeTab, setActiveTab] = useState<MenuCategoryTab>('varma');
   const stockholmStatus = useMemo(() => getStockholmStatus(), []);
 
-  // Filter dishes based on active tab
-  const tabDishes = useMemo(() => {
-    switch (activeTab) {
-      case 'varma':
-        return MENU_ITEMS.filter((item) => item.category === 'Varma persiska rätter');
-      case 'mazeh':
-        return MENU_ITEMS.filter(
-          (item) =>
-            item.category === 'Mazeh-tallrik' ||
-            ['olovieh', 'kashke-bademjan', 'hummus', 'koo-koo'].includes(item.id)
-        );
-      case 'sallad-wrap':
-        return MENU_ITEMS.filter(
-          (item) => item.category === 'Sallader' || item.category === 'Wraps'
-        );
-      case 'frukost':
-        return MENU_ITEMS.filter((item) => item.category === 'Persisk frukost');
-      case 'sott':
-        return MENU_ITEMS.filter(
-          (item) =>
-            item.category === 'Något sött' ||
-            ['torshi', 'mastokhiar', 'mastomoosir', 'zeytoon-parvardeh', 'salad-shirazi'].includes(item.id)
-        );
-      case 'drycker':
-        return MENU_ITEMS.filter((item) => item.category === 'Drycker');
-      default:
-        return [];
-    }
-  }, [activeTab]);
-
-  const activeTabConfig = TABS.find((t) => t.id === activeTab) || TABS[0];
-
   return (
-    <div className="space-y-20 sm:space-y-28 pb-16">
+    <div className="space-y-14 sm:space-y-24 pb-12 sm:pb-16">
       
       {/* =========================================================================
           1. HERO SECTION
           ========================================================================= */}
-      <section id="top" className="relative min-h-[85vh] flex items-center justify-center pt-28 sm:pt-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#FAF7F2]">
+      <section id="top" className="relative lg:min-h-[85vh] flex items-center justify-center pt-24 pb-8 sm:pt-32 sm:pb-10 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#FAF7F2]">
         {/* Subtle ice blue ambient gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#CDEBF2]/60 via-[#CDEBF2]/20 to-[#FAF7F2] pointer-events-none z-10" />
 
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-20 py-6 sm:py-10">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center z-20 py-4 sm:py-10">
           
           {/* Left: Brand Identity, Live Status, Heading, Subtitle & CTA */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
@@ -160,8 +86,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
           </div>
 
           {/* Right: Sima Deli Logo Medallion (Transparent Logo + Gold Circle + Well-spaced Cards) */}
-          <div className="lg:col-span-5 relative flex flex-col items-center justify-center pt-4 pb-6">
-            <div className="relative w-full max-w-[390px] aspect-square flex items-center justify-center">
+          <div className="lg:col-span-5 relative flex flex-col items-center justify-center pt-6 pb-4 sm:pt-4 sm:pb-6">
+            <div className="relative w-full max-w-[290px] sm:max-w-[380px] aspect-square flex items-center justify-center">
               
               {/* Outer decorative ring with layered gradient and soft drop shadow */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white via-[#FAF7F2] to-[#CDEBF2]/50 border-2 border-[#CDEBF2] shadow-2xl" />
@@ -169,22 +95,22 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
               <div className="absolute inset-6 rounded-full border border-[#CAA332]/30 pointer-events-none" />
 
               {/* Top-Right Micro Feature Card: Corner position outside both circles */}
-              <div className="absolute -top-6 sm:-top-8 -right-3 sm:-right-6 lg:-right-8 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl shadow-xl flex items-center gap-3 z-30 hover:scale-105 transition-transform">
-                <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-gradient-to-br from-[#FAF7F2] to-[#CDEBF2]/60 border border-[#CDEBF2] flex items-center justify-center shrink-0 shadow-2xs">
-                  <Sparkles className="w-4 h-4 text-[#CAA332]" />
+              <div className="absolute -top-5 sm:-top-8 right-0 sm:-right-4 lg:-right-6 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3 py-2 sm:px-4 sm:py-3 rounded-2xl shadow-xl flex items-center gap-2.5 sm:gap-3 z-30 hover:scale-105 transition-transform">
+                <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-[#FAF7F2] to-[#CDEBF2]/60 border border-[#CDEBF2] flex items-center justify-center shrink-0 shadow-2xs">
+                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#CAA332]" />
                 </div>
                 <div className="text-left">
-                  <span className="text-xs font-bold text-[#1C1917] block leading-tight">
+                  <span className="text-[11px] sm:text-xs font-bold text-[#1C1917] block leading-tight">
                     Äkta Persiska Råvaror
                   </span>
-                  <span className="text-[10px] text-[#78716C] font-medium block pt-0.5">
+                  <span className="text-[9px] sm:text-[10px] text-[#78716C] font-medium block pt-0.5">
                     Saffran, berberisbär & örter
                   </span>
                 </div>
               </div>
 
               {/* Inner Circle: Gold Medallion with 100% Transparent Logo */}
-              <div className="absolute inset-8 sm:inset-10 rounded-full bg-gradient-to-br from-[#d4ad39] via-[#caa332] to-[#b89128] border-4 border-white shadow-xl overflow-hidden flex items-center justify-center p-6 z-10">
+              <div className="absolute inset-7 sm:inset-10 rounded-full bg-gradient-to-br from-[#d4ad39] via-[#caa332] to-[#b89128] border-4 border-white shadow-xl overflow-hidden flex items-center justify-center p-5 sm:p-6 z-10">
                 {/* Subtle radial sheen over the gold medallion */}
                 <div className="absolute inset-0 bg-radial from-white/20 via-transparent to-black/15 pointer-events-none" />
 
@@ -192,12 +118,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                 <img
                   src="/images/logo-transparent.png"
                   alt="Sima Deli Logo"
-                  className="w-44 sm:w-52 h-auto object-contain drop-shadow-sm transition-transform duration-300 hover:scale-105 relative z-10"
+                  className="w-36 sm:w-52 h-auto object-contain drop-shadow-sm transition-transform duration-300 hover:scale-105 relative z-10"
                 />
               </div>
 
               {/* Bottom-Left Micro Feature Card: Corner position, completely outside both circles */}
-              <div className="absolute -bottom-6 sm:-bottom-8 -left-4 sm:-left-12 lg:-left-16 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3 py-2 sm:px-4 sm:py-3 rounded-2xl shadow-xl flex items-center gap-2.5 sm:gap-3 z-30 hover:scale-105 transition-transform">
+              <div className="absolute -bottom-5 sm:-bottom-8 left-0 sm:-left-6 lg:-left-10 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3 py-2 sm:px-4 sm:py-3 rounded-2xl shadow-xl flex items-center gap-2.5 sm:gap-3 z-30 hover:scale-105 transition-transform">
                 <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-[#FAF7F2] to-[#CDEBF2]/60 border border-[#CDEBF2] flex items-center justify-center shrink-0 shadow-2xs">
                   <UtensilsCrossed className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#1E5F6E]" />
                 </div>
@@ -214,7 +140,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
             </div>
 
             {/* Clean sub-caption placed neatly below the medallion, outside the circle with generous clearance */}
-            <div className="mt-12 sm:mt-14 text-center z-10">
+            <div className="mt-10 sm:mt-14 text-center z-10">
               <span className="text-[11px] font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2]/60 px-4 py-1.5 rounded-full border border-[#B8E2EC] inline-block shadow-2xs">
                 Persisk Deli & Restaurang
               </span>
@@ -228,8 +154,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
           2. QUICK ACTIONS ("VAD VILL DU GÖRA?")
           ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl border border-[#CDEBF2] p-6 sm:p-10 shadow-xs">
-          <div className="max-w-xl mb-8">
+        <div className="bg-white rounded-3xl border border-[#CDEBF2] p-5 sm:p-10 shadow-xs">
+          <div className="max-w-xl mb-6 sm:mb-8">
             <span className="text-xs font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2]/50 px-3 py-1 rounded-full">
               Snabba val
             </span>
@@ -241,7 +167,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
             
             {/* Tile 1: Äta här */}
             <div
@@ -358,170 +284,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
       </section>
 
       {/* =========================================================================
-          3. MENU SECTION ("DET VI LAGAR" / #meny)
-          ========================================================================= */}
-      <section id="meny" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-8 space-y-2.5">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2]/50 px-3.5 py-1 rounded-full border border-[#CDEBF2]">
-            Meny
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1C1917]">
-            Det vi lagar
-          </h2>
-          <p className="text-sm text-[#57534E]">
-            Persiska rätter lagade från grunden. Alla priser i kronor (SEK).
-          </p>
-        </div>
-
-        {/* Interactive Category Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-3 pt-1 scrollbar-none justify-start sm:justify-center">
-          {TABS.map((tab) => {
-            const isActive = tab.id === activeTab;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                  isActive
-                    ? 'bg-[#1E5F6E] text-white shadow-sm'
-                    : 'bg-white text-[#1C1917] border border-[#CDEBF2] hover:bg-[#CDEBF2]/30'
-                }`}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Tab Specific Note */}
-        {activeTabConfig.note && (
-          <p className="text-xs text-[#78716C] italic text-center mt-3 mb-6">
-            {activeTabConfig.note}
-          </p>
-        )}
-
-        {/* Dish List Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-6">
-          {tabDishes.map((dish) => (
-            <div
-              key={dish.id}
-              className="bg-white rounded-2xl p-4 sm:p-5 border border-[#E7E0D8] shadow-2xs hover:shadow-md transition-shadow flex items-start gap-4"
-            >
-              {/* Optional Food Thumbnail if available */}
-              {dish.image && (
-                <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-xl overflow-hidden bg-[#FAF7F2] border border-[#CDEBF2] p-1 flex items-center justify-center">
-                  <img
-                    src={dish.image}
-                    alt={dish.name}
-                    className="w-full h-full object-contain"
-                    loading="lazy"
-                  />
-                </div>
-              )}
-
-              {/* Dish Content */}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-2">
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    <h3 className="font-serif text-base sm:text-lg font-bold text-[#1C1917] leading-snug">
-                      {dish.name}
-                    </h3>
-                    {dish.isVegan && (
-                      <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-[#CDEBF2] text-[#1E5F6E] border border-[#B8E2EC]">
-                        Vegan
-                      </span>
-                    )}
-                    {dish.isVegetarian && !dish.isVegan && (
-                      <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-[#CDEBF2] text-[#1E5F6E] border border-[#B8E2EC]">
-                        Vegetarisk
-                      </span>
-                    )}
-                    {dish.note && (
-                      <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-200">
-                        {dish.note}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Price */}
-                  <div className="text-right shrink-0">
-                    {dish.portionOptions ? (
-                      <div className="text-xs font-bold text-[#C6A04A]">
-                        {dish.portionOptions.map((opt) => (
-                          <div key={opt.size}>
-                            <span>{opt.size}: {opt.price}</span>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <span className="font-serif font-bold text-base sm:text-lg text-[#C6A04A] whitespace-nowrap">
-                        {dish.price}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed mt-1.5 font-light">
-                  {dish.description}
-                </p>
-
-                {/* Sub-items for Mazeh-tallrik */}
-                {dish.subItems && (
-                  <div className="mt-3 pt-2.5 border-t border-[#CDEBF2]/60 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                    {dish.subItems.map((sub) => (
-                      <div key={sub.name} className="bg-[#FAF7F2] p-2 rounded-lg border border-[#CDEBF2]/50">
-                        <span className="font-semibold text-[#1C1917] block">{sub.name}</span>
-                        <span className="text-[11px] text-[#78716C]">{sub.description}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Menu Navigation Callout */}
-        <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-[#FAF7F2] border border-[#CDEBF2] text-center space-y-4">
-          <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1C1917]">
-            Utforska hela vår kompletta restaurangmeny
-          </h3>
-          <p className="text-xs sm:text-sm text-[#57534E] max-w-xl mx-auto">
-            Se alla våra persiska rätter, mazeh, sallader, wraps, frukost och drycker samlade på ett ställe.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            <a
-              href="/meny/"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate('/meny/');
-              }}
-              className="px-6 py-3 rounded-full bg-[#C6A04A] hover:bg-[#B08D3B] text-white font-semibold text-xs uppercase tracking-wider shadow-sm transition-colors flex items-center gap-2"
-            >
-              <span>Se hela menyn</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
-
-            <button
-              onClick={onOpenBooking}
-              className="px-6 py-3 rounded-full bg-[#1E5F6E] hover:bg-[#164753] text-white font-semibold text-xs uppercase tracking-wider transition-colors flex items-center gap-2 cursor-pointer"
-            >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Boka bord</span>
-            </button>
-          </div>
-        </div>
-
-      </section>
-
-      {/* =========================================================================
-          4. ABOUT US SECTION ("OM OSS" / #om-oss)
+          3. ABOUT US SECTION ("OM OSS" / #om-oss)
           ========================================================================= */}
       <section id="om-oss" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
-        <div className="bg-gradient-to-br from-[#CDEBF2]/40 via-[#FAF7F2] to-[#FAF7F2] rounded-3xl border border-[#CDEBF2] p-8 sm:p-12 lg:p-16 shadow-xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="bg-gradient-to-br from-[#CDEBF2]/40 via-[#FAF7F2] to-[#FAF7F2] rounded-3xl border border-[#CDEBF2] p-5 sm:p-12 lg:p-16 shadow-xs">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
             {/* Left: Mother & Kitchen Authentic Photo */}
             <div className="lg:col-span-5 relative order-2 lg:order-1">
@@ -533,7 +300,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                   loading="lazy"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-3 sm:-right-4 bg-[#C6A04A] text-white p-4 rounded-xl shadow-lg max-w-xs text-xs">
+              <div className="mt-4 sm:mt-0 sm:absolute sm:-bottom-4 sm:-right-4 bg-[#C6A04A] text-white p-4 rounded-xl shadow-lg sm:max-w-xs text-xs">
                 <p className="font-serif text-sm font-semibold italic">
                   "Kärleken till det persiska köket börjar alltid i mammas grytor."
                 </p>
@@ -580,17 +347,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
       </section>
 
       {/* =========================================================================
-          5. CATERING SECTION ("MAT TILL DINA GÄSTER" / #catering)
+          4. CATERING SECTION ("MAT TILL DINA GÄSTER" / #catering)
           ========================================================================= */}
       <section id="catering" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
-        <div className="bg-white rounded-3xl border border-[#CDEBF2] p-8 sm:p-12 lg:p-16 shadow-xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="bg-white rounded-3xl border border-[#CDEBF2] p-5 sm:p-12 lg:p-16 shadow-xs">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
             <div className="lg:col-span-7 space-y-5">
               <span className="text-xs font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2]/50 px-3 py-1 rounded-full border border-[#CDEBF2]">
                 Catering
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1C1917]">
+              <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#1C1917]">
                 Mat till dina gäster
               </h2>
               <div className="space-y-3 text-sm sm:text-base text-[#57534E] leading-relaxed font-light">
@@ -599,26 +366,26 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                 </p>
                 <p>
                   Berätta vad du planerar så hjälper vi dig. Mejla oss på{' '}
-                  <a href={`mailto:${RESTAURANT_INFO.email}`} className="font-semibold text-[#1E5F6E] underline">
+                  <a href={`mailto:${RESTAURANT_INFO.email}`} className="font-semibold text-[#1E5F6E] underline break-all sm:break-normal">
                     {RESTAURANT_INFO.email}
                   </a>.
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-3.5 pt-2">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-2">
                 <a
                   href="/catering/"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('/catering/');
                   }}
-                  className="px-6 py-3 rounded-full bg-[#C6A04A] hover:bg-[#B08D3B] text-white font-semibold text-xs uppercase tracking-wider transition-colors shadow-xs"
+                  className="w-full sm:w-auto text-center px-6 py-3 rounded-full bg-[#C6A04A] hover:bg-[#B08D3B] text-white font-semibold text-xs uppercase tracking-wider transition-colors shadow-xs"
                 >
                   Se cateringsidan
                 </a>
                 <a
                   href={`mailto:${RESTAURANT_INFO.email}`}
-                  className="px-6 py-3 rounded-full bg-[#CDEBF2] hover:bg-[#BCE6EE] text-[#1C1917] border border-[#B8E2EC] font-semibold text-xs uppercase tracking-wider transition-colors"
+                  className="w-full sm:w-auto text-center px-6 py-3 rounded-full bg-[#CDEBF2] hover:bg-[#BCE6EE] text-[#1C1917] border border-[#B8E2EC] font-semibold text-xs uppercase tracking-wider transition-colors"
                 >
                   Maila info@simadeli.com
                 </a>
@@ -626,7 +393,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
             </div>
 
             {/* Quick Catering Contact Card */}
-            <div className="lg:col-span-5 bg-[#FAF7F2] rounded-2xl p-6 sm:p-8 border border-[#CDEBF2] space-y-4">
+            <div className="lg:col-span-5 bg-[#FAF7F2] rounded-2xl p-5 sm:p-8 border border-[#CDEBF2] space-y-4">
               <h3 className="font-serif text-lg font-bold text-[#1C1917]">
                 Snabbkontakt Catering & Lokal
               </h3>
@@ -634,19 +401,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                 Planerar du disputation, födelsedag eller företagsevent? Vi skräddarsyr en generös persisk meny för ditt sällskap.
               </p>
               <div className="space-y-2.5 text-xs text-[#1C1917] pt-2">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <span className="text-[#C6A04A] font-bold">Email:</span>
-                  <a href={`mailto:${RESTAURANT_INFO.email}`} className="underline font-medium">
+                  <a href={`mailto:${RESTAURANT_INFO.email}`} className="underline font-medium break-all">
                     {RESTAURANT_INFO.email}
                   </a>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <span className="text-[#C6A04A] font-bold">Telefon:</span>
                   <a href={`tel:${RESTAURANT_INFO.phoneRaw}`} className="underline font-medium">
                     {RESTAURANT_INFO.phone}
                   </a>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <span className="text-[#C6A04A] font-bold">Adress:</span>
                   <span>Valhallavägen 120, Östermalm</span>
                 </div>
@@ -658,15 +425,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
       </section>
 
       {/* =========================================================================
-          6. MATLÅDOR & PRENUMERATION SECTION (#matlador)
+          5. MATLÅDOR & PRENUMERATION SECTION (#matlador)
           ========================================================================= */}
       <section id="matlador" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
-        <div className="bg-[#FAF7F2] rounded-3xl border border-[#CDEBF2] p-8 sm:p-12 lg:p-16">
-          <div className="max-w-2xl mb-8 space-y-2.5">
+        <div className="bg-[#FAF7F2] rounded-3xl border border-[#CDEBF2] p-5 sm:p-12 lg:p-16">
+          <div className="max-w-2xl mb-6 sm:mb-8 space-y-2.5">
             <span className="text-xs font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2]/60 px-3.5 py-1 rounded-full border border-[#CDEBF2]">
               Matlådor
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1C1917]">
+            <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#1C1917]">
               Sima Deli matlådor och prenumeration
             </h2>
             <p className="text-sm text-[#57534E]">
@@ -677,7 +444,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             {/* Card 1: Matlådor i butik */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#CDEBF2] shadow-2xs flex flex-col justify-between">
+            <div className="bg-white rounded-2xl p-5 sm:p-8 border border-[#CDEBF2] shadow-2xs flex flex-col justify-between">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[#1E5F6E] bg-[#CDEBF2]/50 px-2.5 py-1 rounded-full mb-3 inline-block">
                   I Butik
@@ -705,7 +472,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
             </div>
 
             {/* Card 2: Prenumeration */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#CDEBF2] shadow-2xs flex flex-col justify-between">
+            <div className="bg-white rounded-2xl p-5 sm:p-8 border border-[#CDEBF2] shadow-2xs flex flex-col justify-between">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[#1E5F6E] bg-[#CDEBF2]/50 px-2.5 py-1 rounded-full mb-3 inline-block">
                   Prenumeration
@@ -737,14 +504,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
       </section>
 
       {/* =========================================================================
-          7. HEMLEVERANS SECTION ("BESTÄLL HEM" / #hem)
+          6. HEMLEVERANS SECTION ("BESTÄLL HEM" / #hem)
           ========================================================================= */}
       <section id="hem" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-2.5">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-2.5">
           <span className="text-xs font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2]/50 px-3.5 py-1 rounded-full border border-[#CDEBF2]">
             Hemleverans
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1C1917]">
+          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#1C1917]">
             Beställ hem
           </h2>
           <p className="text-sm text-[#57534E]">
@@ -756,14 +523,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
       </section>
 
       {/* =========================================================================
-          8. CONTACT & HOURS SECTION ("HITTA HIT" / #kontakt)
+          7. CONTACT & HOURS SECTION ("HITTA HIT" / #kontakt)
           ========================================================================= */}
       <section id="kontakt" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-2.5">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-2.5">
           <span className="text-xs font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2]/50 px-3.5 py-1 rounded-full border border-[#CDEBF2]">
             Kontakt
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1C1917]">
+          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#1C1917]">
             Hitta hit
           </h2>
           <p className="text-sm text-[#57534E]">
@@ -774,7 +541,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* Card 1: Adress & Karta */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#CDEBF2] shadow-2xs flex flex-col justify-between">
+          <div className="bg-white rounded-3xl p-5 sm:p-8 border border-[#CDEBF2] shadow-2xs flex flex-col justify-between">
             <div className="space-y-4">
               <div className="w-10 h-10 rounded-xl bg-[#CDEBF2] text-[#1E5F6E] flex items-center justify-center">
                 <MapPin className="w-5 h-5" />
@@ -802,7 +569,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
           </div>
 
           {/* Card 2: Telefon, E-post & Sociala Medier */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#CDEBF2] shadow-2xs flex flex-col justify-between">
+          <div className="bg-white rounded-3xl p-5 sm:p-8 border border-[#CDEBF2] shadow-2xs flex flex-col justify-between">
             <div className="space-y-4">
               <div className="w-10 h-10 rounded-xl bg-[#CDEBF2] text-[#1E5F6E] flex items-center justify-center">
                 <Phone className="w-5 h-5" />
@@ -817,19 +584,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                   </a>
                 </p>
                 <p>
-                  <a href={`mailto:${RESTAURANT_INFO.email}`} className="underline text-[#1E5F6E]">
+                  <a href={`mailto:${RESTAURANT_INFO.email}`} className="underline text-[#1E5F6E] break-all">
                     {RESTAURANT_INFO.email}
                   </a>
                 </p>
               </div>
             </div>
 
-            <div className="pt-6 flex items-center gap-2.5">
+            <div className="pt-6 flex flex-wrap sm:flex-nowrap items-center gap-2.5">
               <a
                 href={RESTAURANT_INFO.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-full bg-[#FAF7F2] hover:bg-[#CDEBF2] text-xs font-semibold text-[#1C1917] border border-[#CDEBF2] transition-colors"
+                className="flex-1 min-w-[110px] inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-full bg-[#FAF7F2] hover:bg-[#CDEBF2] text-xs font-semibold text-[#1C1917] border border-[#CDEBF2] transition-colors"
               >
                 <InstagramIcon className="w-4 h-4 text-[#C6A04A]" />
                 <span>Instagram</span>
@@ -838,7 +605,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                 href={RESTAURANT_INFO.socials.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-full bg-[#FAF7F2] hover:bg-[#CDEBF2] text-xs font-semibold text-[#1C1917] border border-[#CDEBF2] transition-colors"
+                className="flex-1 min-w-[110px] inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-full bg-[#FAF7F2] hover:bg-[#CDEBF2] text-xs font-semibold text-[#1C1917] border border-[#CDEBF2] transition-colors"
               >
                 <FacebookIcon className="w-4 h-4 text-[#1E5F6E]" />
                 <span>Facebook</span>
@@ -847,7 +614,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
           </div>
 
           {/* Card 3: Öppettider med live markering */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#CDEBF2] shadow-2xs flex flex-col justify-between">
+          <div className="bg-white rounded-3xl p-5 sm:p-8 border border-[#CDEBF2] shadow-2xs flex flex-col justify-between">
             <div className="space-y-4">
               <div className="w-10 h-10 rounded-xl bg-[#CDEBF2] text-[#1E5F6E] flex items-center justify-center">
                 <Clock className="w-5 h-5" />

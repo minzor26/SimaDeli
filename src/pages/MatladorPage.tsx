@@ -13,17 +13,17 @@ export const MatladorPage: React.FC = () => {
   );
 
   return (
-    <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <div className="pt-24 sm:pt-28 pb-16 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
       
       {/* Editorial Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <span className="text-xs font-bold uppercase tracking-widest text-[#c6a04a] bg-[#cdebf2]/40 px-3 py-1 rounded-full border border-[#cdebf2]">
           Sima Deli Produkter & Matlådor
         </span>
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917]">
+        <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917]">
           Sima Deli Matlådor & Produkter
         </h1>
-        <p className="font-serif text-xl sm:text-2xl text-[#1e5f6e] italic font-medium">
+        <p className="font-serif text-lg sm:text-2xl text-[#1e5f6e] italic font-medium">
           “Här kan du hitta Sima Delis färdiglagade matlådor och delikatesser”
         </p>
         <p className="text-xs sm:text-sm text-[#78716C] max-w-xl mx-auto leading-relaxed">
@@ -32,7 +32,7 @@ export const MatladorPage: React.FC = () => {
       </div>
 
       {/* Featured Products Showcase Section */}
-      <section className="space-y-8 bg-white/60 p-6 sm:p-10 rounded-3xl border border-[#cdebf2]/80 shadow-2xs">
+      <section className="space-y-8 bg-white/60 p-4 sm:p-10 rounded-3xl border border-[#cdebf2]/80 shadow-2xs">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-bold uppercase tracking-widest text-[#c6a04a]">
             Vårt Sortiment
@@ -60,17 +60,23 @@ export const MatladorPage: React.FC = () => {
                     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-2xs"
                     loading="lazy"
                   />
-                  {prod.isVegan && (
-                    <span className="absolute top-3 left-3 bg-[#cdebf2] text-[#1e5f6e] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#b8e2ec] flex items-center gap-1">
-                      <Leaf className="w-3 h-3" />
-                      Vegan
-                    </span>
-                  )}
-                  {prod.note && (
-                    <span className="absolute top-3 right-3 bg-[#1C1917]/85 text-[#c6a04a] text-[10px] font-semibold px-2.5 py-0.5 rounded-full backdrop-blur-xs flex items-center gap-1">
-                      <Sparkles className="w-3 h-3 text-[#c6a04a]" />
-                      {prod.note}
-                    </span>
+                  {(prod.isVegan || prod.note) && (
+                    <div className="absolute top-2.5 inset-x-2.5 flex flex-wrap items-start justify-between gap-1.5 pointer-events-none">
+                      {prod.isVegan ? (
+                        <span className="bg-[#cdebf2] text-[#1e5f6e] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#b8e2ec] flex items-center gap-1">
+                          <Leaf className="w-3 h-3" />
+                          Vegan
+                        </span>
+                      ) : (
+                        <span />
+                      )}
+                      {prod.note && (
+                        <span className="bg-[#1C1917]/85 text-[#c6a04a] text-[10px] font-semibold px-2.5 py-0.5 rounded-full backdrop-blur-xs flex items-center gap-1">
+                          <Sparkles className="w-3 h-3 text-[#c6a04a]" />
+                          {prod.note}
+                        </span>
+                      )}
+                    </div>
                   )}
                 </div>
 
@@ -87,7 +93,7 @@ export const MatladorPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-5 pt-0 flex items-center justify-between border-t border-[#cdebf2]/40 mt-3 pt-3">
+              <div className="px-5 pb-5 pt-3 flex flex-wrap items-center justify-between gap-2 border-t border-[#cdebf2]/40 mt-2">
                 <span className="text-xs text-[#78716C] font-medium">{prod.category}</span>
                 {prod.price && (
                   <span className="font-serif text-base font-bold text-[#1e5f6e] bg-[#cdebf2]/60 px-3 py-1 rounded-lg border border-[#cdebf2]">
@@ -121,7 +127,7 @@ export const MatladorPage: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Sök butik eller område (t.ex. Kista, Solna, City)..."
-            className="w-full pl-11 pr-4 py-3 rounded-full bg-white border border-[#cdebf2] focus:border-[#c6a04a] focus:outline-hidden text-xs text-[#1C1917] shadow-2xs placeholder:text-[#A8A29E]"
+            className="w-full pl-11 pr-14 py-3 rounded-full bg-white border border-[#cdebf2] focus:border-[#c6a04a] focus:outline-hidden text-xs text-[#1C1917] shadow-2xs placeholder:text-[#A8A29E]"
           />
           {searchQuery && (
             <button

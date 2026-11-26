@@ -9,23 +9,23 @@ interface OmOssPageProps {
 
 export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate }) => {
   return (
-    <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+    <div className="pt-24 sm:pt-28 pb-16 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-20">
       
       {/* Editorial Title */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <span className="text-xs font-bold uppercase tracking-widest text-[#c6a04a]">
           Vår Historia & Filosofi
         </span>
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917]">
+        <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917]">
           Om Sima Deli
         </h1>
-        <p className="font-serif text-xl sm:text-2xl text-[#57534E] italic font-normal">
+        <p className="font-serif text-lg sm:text-2xl text-[#57534E] italic font-normal">
           “Välkommen in och upplev mammas persiska mat i en varm och hemtrevlig atmosfär. Ät här eller take-away.”
         </p>
       </div>
 
       {/* Main Narrative Split */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
         {/* Left: Authentic Kitchen / Mother photo */}
         <div className="lg:col-span-6 relative">
@@ -36,7 +36,7 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
               className="w-full h-full object-contain rounded-2xl"
             />
           </div>
-          <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl border border-[#E7E0D8] max-w-xs space-y-2">
+          <div className="mt-4 sm:mt-0 sm:absolute sm:-bottom-6 sm:-right-4 bg-white p-5 sm:p-6 rounded-2xl shadow-xl border border-[#E7E0D8] sm:max-w-xs space-y-2">
             <div className="flex items-center gap-2 text-[#c6a04a]">
               <Heart className="w-4 h-4 fill-[#c6a04a]" />
               <span className="text-xs font-bold uppercase tracking-wider">Äkta Hantverk</span>
@@ -65,10 +65,10 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
             Välkommen in och upplev mammas persiska mat i en varm och hemtrevlig atmosfär. Ät här eller take-away.
           </p>
 
-          <div className="pt-4 flex flex-wrap gap-4">
+          <div className="pt-4 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
             <button
               onClick={onOpenBooking}
-              className="px-6 py-3 rounded-full bg-[#c6a04a] hover:bg-[#b08d3b] text-white font-semibold text-xs uppercase tracking-wider transition-colors shadow-xs flex items-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#c6a04a] hover:bg-[#b08d3b] text-white font-semibold text-xs uppercase tracking-wider transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>Boka Bord</span>
@@ -79,7 +79,7 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
                 e.preventDefault();
                 onNavigate('/kontakt/');
               }}
-              className="px-6 py-3 rounded-full border border-[#D6CCC2] hover:bg-[#EAE3DA] text-[#1C1917] font-semibold text-xs uppercase tracking-wider transition-colors"
+              className="w-full sm:w-auto text-center px-6 py-3 rounded-full border border-[#D6CCC2] hover:bg-[#EAE3DA] text-[#1C1917] font-semibold text-xs uppercase tracking-wider transition-colors"
             >
               Hitta hit (Valhallavägen 120)
             </a>
@@ -89,7 +89,7 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
       </div>
 
       {/* Restaurant Information Card */}
-      <div className="bg-[#F4EFEA] rounded-3xl p-8 sm:p-12 border border-[#E7E0D8]">
+      <div className="bg-[#F4EFEA] rounded-3xl p-6 sm:p-12 border border-[#E7E0D8]">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center sm:text-left">
           <div className="space-y-2">
             <div className="w-10 h-10 rounded-full bg-[#cdebf2] flex items-center justify-center text-[#1e5f6e] mx-auto sm:mx-0">
