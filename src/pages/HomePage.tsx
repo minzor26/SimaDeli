@@ -4,7 +4,6 @@ import { DeliveryCards } from '../components/DeliveryCards';
 import { getStockholmStatus, WEEKDAYS_SV } from '../utils/stockholmTime';
 import {
   Calendar,
-  UtensilsCrossed,
   ArrowRight,
   MapPin,
   Phone,
@@ -13,8 +12,7 @@ import {
   Truck,
   Users,
   Package,
-  ExternalLink,
-  Sparkles
+  ExternalLink
 } from 'lucide-react';
 import { InstagramIcon, FacebookIcon } from '../components/SocialIcons';
 
@@ -27,126 +25,68 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
   const stockholmStatus = useMemo(() => getStockholmStatus(), []);
 
   return (
-    <div className="space-y-14 sm:space-y-24 pb-12 sm:pb-16">
+    <div className="pt-24 sm:pt-28 space-y-14 sm:space-y-24 pb-12 sm:pb-16">
       
       {/* =========================================================================
-          1. HERO SECTION
+          1. ABOUT US SECTION ("OM OSS" / #om-oss)
           ========================================================================= */}
-      <section id="top" className="relative lg:min-h-[85vh] flex items-center justify-center pt-24 pb-8 sm:pt-32 sm:pb-10 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#FAF7F2]">
-        {/* Subtle ice blue ambient gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#CDEBF2]/60 via-[#CDEBF2]/20 to-[#FAF7F2] pointer-events-none z-10" />
-
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center z-20 py-4 sm:py-10">
-          
-          {/* Left: Brand Identity, Live Status, Heading, Subtitle & CTA */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+      <section id="om-oss" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
+        <div className="bg-gradient-to-br from-[#CDEBF2]/40 via-[#FAF7F2] to-[#FAF7F2] rounded-3xl border border-[#CDEBF2] p-5 sm:p-12 lg:p-16 shadow-xs">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
-            {/* Live Stockholm Hours Status Badge */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#CDEBF2] shadow-2xs text-xs font-medium">
-              <span
-                className={`w-2.5 h-2.5 rounded-full shrink-0 ${
-                  stockholmStatus.isOpen
-                    ? 'bg-emerald-500 shadow-[0_0_0_3px_rgba(16,185,129,0.2)] animate-pulse'
-                    : 'bg-amber-500'
-                }`}
-              />
-              <span className="text-[#1C1917] font-semibold">{stockholmStatus.statusText}</span>
-              <span className="text-[#78716C] hidden sm:inline">•</span>
-              <span className="text-[#57534E] hidden sm:inline">Valhallavägen 120, Östermalm</span>
-            </div>
-
-            {/* Headline as in Sima Deli.html */}
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917] tracking-tight leading-[1.1]">
-              Persian <span className="text-[#C6A04A] italic">Soul Food</span> på Östermalm
-            </h1>
-
-            {/* Subtitle as in Sima Deli.html */}
-            <p className="text-base sm:text-lg text-[#57534E] max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
-              Mammas persiska mat, lagad av mor och dotter med färska råvaror. Ät här eller ta med.
-            </p>
-
-            {/* Primary Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
-              <button
-                onClick={() => onNavigate('/meny/')}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#C6A04A] hover:bg-[#B08D3B] text-white font-semibold text-xs sm:text-sm tracking-wider uppercase shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <UtensilsCrossed className="w-4 h-4" />
-                <span>Se Menyn</span>
-              </button>
-
-              <button
-                onClick={onOpenBooking}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white hover:bg-[#CDEBF2]/50 text-[#1C1917] font-semibold text-xs sm:text-sm tracking-wider uppercase border border-[#CDEBF2] shadow-2xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <Calendar className="w-4 h-4 text-[#1E5F6E]" />
-                <span>Boka Bord</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Right: Sima Deli Logo Medallion (Transparent Logo + Gold Circle + Well-spaced Cards) */}
-          <div className="lg:col-span-5 relative flex flex-col items-center justify-center pt-6 pb-4 sm:pt-4 sm:pb-6">
-            <div className="relative w-full max-w-[290px] sm:max-w-[380px] aspect-square flex items-center justify-center">
-              
-              {/* Outer decorative ring with layered gradient and soft drop shadow */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white via-[#FAF7F2] to-[#CDEBF2]/50 border-2 border-[#CDEBF2] shadow-2xl" />
-              <div className="absolute inset-3 rounded-full border border-dashed border-[#CDEBF2] pointer-events-none" />
-              <div className="absolute inset-6 rounded-full border border-[#CAA332]/30 pointer-events-none" />
-
-              {/* Top-Right Micro Feature Card: Corner position outside both circles */}
-              <div className="absolute -top-5 sm:-top-8 right-0 sm:-right-4 lg:-right-6 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3 py-2 sm:px-4 sm:py-3 rounded-2xl shadow-xl flex items-center gap-2.5 sm:gap-3 z-30 hover:scale-105 transition-transform">
-                <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-[#FAF7F2] to-[#CDEBF2]/60 border border-[#CDEBF2] flex items-center justify-center shrink-0 shadow-2xs">
-                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#CAA332]" />
-                </div>
-                <div className="text-left">
-                  <span className="text-[11px] sm:text-xs font-bold text-[#1C1917] block leading-tight">
-                    Äkta Persiska Råvaror
-                  </span>
-                  <span className="text-[9px] sm:text-[10px] text-[#78716C] font-medium block pt-0.5">
-                    Saffran, berberisbär & örter
-                  </span>
-                </div>
-              </div>
-
-              {/* Inner Circle: Gold Medallion with 100% Transparent Logo */}
-              <div className="absolute inset-7 sm:inset-10 rounded-full bg-gradient-to-br from-[#d4ad39] via-[#caa332] to-[#b89128] border-4 border-white shadow-xl overflow-hidden flex items-center justify-center p-5 sm:p-6 z-10">
-                {/* Subtle radial sheen over the gold medallion */}
-                <div className="absolute inset-0 bg-radial from-white/20 via-transparent to-black/15 pointer-events-none" />
-
-                {/* Sima Deli Transparent Logo - ONLY the ice-blue letters on top of the gold background! */}
+            {/* Left: Mother & Kitchen Authentic Photo */}
+            <div className="lg:col-span-5 relative order-2 lg:order-1">
+              <div className="rounded-2xl overflow-hidden shadow-lg border-2 border-white aspect-[3/4] bg-stone-100 p-2 flex items-center justify-center">
                 <img
-                  src="/images/logo-transparent.png"
-                  alt="Sima Deli Logo"
-                  className="w-36 sm:w-52 h-auto object-contain drop-shadow-sm transition-transform duration-300 hover:scale-105 relative z-10"
+                  src="/images/sima-kitchen.jpg"
+                  alt="Mammas persiska matlagning hos Sima Deli"
+                  className="w-full h-full object-contain rounded-xl"
+                  loading="lazy"
                 />
               </div>
+              <div className="mt-4 sm:mt-0 sm:absolute sm:-bottom-4 sm:-right-4 bg-[#C6A04A] text-white p-4 rounded-xl shadow-lg sm:max-w-xs text-xs">
+                <p className="font-serif text-sm font-semibold italic">
+                  "Kärleken till det persiska köket börjar alltid i mammas grytor."
+                </p>
+              </div>
+            </div>
 
-              {/* Bottom-Left Micro Feature Card: Corner position, completely outside both circles */}
-              <div className="absolute -bottom-5 sm:-bottom-8 left-0 sm:-left-6 lg:-left-10 bg-white/95 backdrop-blur-md border border-[#CDEBF2] px-3 py-2 sm:px-4 sm:py-3 rounded-2xl shadow-xl flex items-center gap-2.5 sm:gap-3 z-30 hover:scale-105 transition-transform">
-                <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-[#FAF7F2] to-[#CDEBF2]/60 border border-[#CDEBF2] flex items-center justify-center shrink-0 shadow-2xs">
-                  <UtensilsCrossed className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#1E5F6E]" />
-                </div>
-                <div className="text-left">
-                  <span className="text-[11px] sm:text-xs font-bold text-[#1C1917] block leading-tight">
-                    Mammas Recept
-                  </span>
-                  <span className="text-[9px] sm:text-[10px] text-[#78716C] font-medium block pt-0.5">
-                    Lagad från grunden med kärlek
-                  </span>
-                </div>
+            {/* Right: Narrative Story */}
+            <div className="lg:col-span-7 space-y-5 order-1 lg:order-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2] px-3 py-1 rounded-full border border-[#B8E2EC]">
+                Om oss
+              </span>
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1C1917] leading-snug">
+                Persisk mat som lagas av två generationer, mor och dotter, med en gemensam passion för det persiska köket.
+              </h2>
+              <div className="space-y-3.5 text-sm sm:text-base text-[#57534E] font-light leading-relaxed">
+                <p>
+                  Mitt på Östermalm hittar du Sima Deli. Vi är kända för en genuin persisk matupplevelse med färska råvaror och passion. Vi kallar det <strong>Persian Soul Food</strong>.
+                </p>
+                <p>
+                  Välkommen in och upplev mammas persiska mat i en varm och hemtrevlig atmosfär. Ät här eller ta med.
+                </p>
+                <p className="text-xs sm:text-sm text-[#78716C]">
+                  Hos oss på Valhallavägen 120 möts traditionella persiska örter, saffran av högsta kvalitet, torkad lime och långkokta grytor med skandinavisk omsorg och värme.
+                </p>
               </div>
 
+              <div className="pt-2">
+                <a
+                  href="/om-oss/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('/om-oss/');
+                  }}
+                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#C6A04A] hover:text-[#B08D3B] transition-colors group"
+                >
+                  <span>Läs hela vår historia</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </a>
+              </div>
             </div>
 
-            {/* Clean sub-caption placed neatly below the medallion, outside the circle with generous clearance */}
-            <div className="mt-10 sm:mt-14 text-center z-10">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2]/60 px-4 py-1.5 rounded-full border border-[#B8E2EC] inline-block shadow-2xs">
-                Persisk Deli & Restaurang
-              </span>
-            </div>
           </div>
-
         </div>
       </section>
 
@@ -277,69 +217,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                 <span>Läs mer</span>
                 <span>→</span>
               </span>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          3. ABOUT US SECTION ("OM OSS" / #om-oss)
-          ========================================================================= */}
-      <section id="om-oss" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
-        <div className="bg-gradient-to-br from-[#CDEBF2]/40 via-[#FAF7F2] to-[#FAF7F2] rounded-3xl border border-[#CDEBF2] p-5 sm:p-12 lg:p-16 shadow-xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            
-            {/* Left: Mother & Kitchen Authentic Photo */}
-            <div className="lg:col-span-5 relative order-2 lg:order-1">
-              <div className="rounded-2xl overflow-hidden shadow-lg border-2 border-white aspect-[3/4] bg-stone-100 p-2 flex items-center justify-center">
-                <img
-                  src="/images/sima-kitchen.jpg"
-                  alt="Mammas persiska matlagning hos Sima Deli"
-                  className="w-full h-full object-contain rounded-xl"
-                  loading="lazy"
-                />
-              </div>
-              <div className="mt-4 sm:mt-0 sm:absolute sm:-bottom-4 sm:-right-4 bg-[#C6A04A] text-white p-4 rounded-xl shadow-lg sm:max-w-xs text-xs">
-                <p className="font-serif text-sm font-semibold italic">
-                  "Kärleken till det persiska köket börjar alltid i mammas grytor."
-                </p>
-              </div>
-            </div>
-
-            {/* Right: Narrative Story */}
-            <div className="lg:col-span-7 space-y-5 order-1 lg:order-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2] px-3 py-1 rounded-full border border-[#B8E2EC]">
-                Om oss
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1C1917] leading-snug">
-                Persisk mat som lagas av två generationer, mor och dotter, med en gemensam passion för det persiska köket.
-              </h2>
-              <div className="space-y-3.5 text-sm sm:text-base text-[#57534E] font-light leading-relaxed">
-                <p>
-                  Mitt på Östermalm hittar du Sima Deli. Vi är kända för en genuin persisk matupplevelse med färska råvaror och passion. Vi kallar det <strong>Persian Soul Food</strong>.
-                </p>
-                <p>
-                  Välkommen in och upplev mammas persiska mat i en varm och hemtrevlig atmosfär. Ät här eller ta med.
-                </p>
-                <p className="text-xs sm:text-sm text-[#78716C]">
-                  Hos oss på Valhallavägen 120 möts traditionella persiska örter, saffran av högsta kvalitet, torkad lime och långkokta grytor med skandinavisk omsorg och värme.
-                </p>
-              </div>
-
-              <div className="pt-2">
-                <a
-                  href="/om-oss/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate('/om-oss/');
-                  }}
-                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#C6A04A] hover:text-[#B08D3B] transition-colors group"
-                >
-                  <span>Läs hela vår historia</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </a>
-              </div>
             </div>
 
           </div>
