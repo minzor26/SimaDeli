@@ -262,9 +262,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                 </a>
                 <a
                   href={`mailto:${RESTAURANT_INFO.email}`}
-                  className="w-full sm:w-auto text-center px-6 py-3 rounded-full bg-[#CDEBF2] hover:bg-[#BCE6EE] text-[#1C1917] border border-[#B8E2EC] font-semibold text-xs uppercase tracking-wider transition-colors"
+                  className="w-full sm:w-auto text-center px-6 py-3 rounded-full bg-[#CDEBF2] hover:bg-[#BCE6EE] text-[#1C1917] border border-[#B8E2EC] font-semibold text-xs tracking-wide transition-colors"
                 >
-                  Maila info@simadeli.com
+                  <span className="uppercase tracking-wider">Maila</span>{' '}
+                  <span className="lowercase">{RESTAURANT_INFO.email}</span>
                 </a>
               </div>
             </div>
