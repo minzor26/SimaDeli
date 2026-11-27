@@ -20,7 +20,7 @@ interface StoryChapter {
   label: string;
   eyebrow: string;
   title: string;
-  paragraphs: string[];
+  summary: string;
   highlight: string;
   image: string;
   imageAlt: string;
@@ -31,12 +31,10 @@ const STORY_CHAPTERS: StoryChapter[] = [
     id: 'generationer',
     label: 'Två generationer',
     eyebrow: 'Kapitel 01 • Arvet',
-    title: 'Mor och dotter sida vid sida i köket',
-    paragraphs: [
-      'Bakom varje rätt på Sima Deli står två generationer — mor och dotter — förenade av kärleken till det genuina persiska husmansköket. Recepten är inte hämtade ur kokböcker, utan bärs i händerna, doften och känslan för exakt rätt balans.',
-      'Det som en gång började vid familjens eget middagsbord lever vidare på Valhallavägen 120. Här lagas allt från grunden med samma värme och omsorg som när man bjuder hem sina närmaste.'
-    ],
-    highlight: 'Handskrivna familjerecept som gått i arv och förfinats genom decennier.',
+    title: 'Mor och dotter i samma kök',
+    summary:
+      'Mitt på Östermalm lagar två generationer persisk mat med färska råvaror och gemensam passion.',
+    highlight: 'Familjerecept som gått i arv genom generationer.',
     image: '/images/sima-kitchen.jpg',
     imageAlt: 'Mamma i köket på Sima Deli'
   },
@@ -44,27 +42,23 @@ const STORY_CHAPTERS: StoryChapter[] = [
     id: 'langkok',
     label: 'Långkok & Tålamod',
     eyebrow: 'Kapitel 02 • Hantverket',
-    title: 'Grytor som aldrig får bråttom',
-    paragraphs: [
-      'I det persiska köket är tid den viktigaste ingrediensen. Våra grytor — som Ghormeh Sabzi och Gheymeh — får sjuda varsamt i timmar tills färska örter, torkad lime och kryddor smält samman till en djup och fyllig smak.',
-      'Risets ångkokning är en egen konstform: fluffiga basmatiris-korn toppade med gyllene saffransris och krispig tahdig som serveras nyberedd varje dag.'
-    ],
-    highlight: 'Varje gryta sjuder långsamt för att bevara både näring, färg och karaktär.',
+    title: 'Grytor som får ta tid',
+    summary:
+      'Våra grytor sjuder långsamt med färska örter, torkad lime och äkta saffran för djup och fyllig smak.',
+    highlight: 'Tillagat från grunden varje dag.',
     image: '/images/tahchin.jpg',
-    imageAlt: 'Gyllene saffransris och persiskt mathantverk på Sima Deli'
+    imageAlt: 'Gyllene saffransris på Sima Deli'
   },
   {
     id: 'motesplats',
     label: 'Östermalms vardagsrum',
     eyebrow: 'Kapitel 03 • Atmosfären',
-    title: 'Persian Soul Food mitt i Stockholm',
-    paragraphs: [
-      'Vi kallar vår mat för Persian Soul Food — mat som värmer både kropp och själ. På Sima Deli är du lika välkommen att slå dig ner för en lugn lunch, dela en mazeh-tallrik med vänner eller hämta med dig middagen hem.',
-      'Med vår deli, våra färska matlådor och catering vill vi göra äkta persisk matlagning till en självklar del av vardagen på Östermalm och i hela Stockholm.'
-    ],
-    highlight: 'Ät på plats, ta med i farten eller låt oss laga maten till din nästa fest.',
+    title: 'Persian Soul Food',
+    summary:
+      'Välkommen in för en varm och hemtrevlig matupplevelse på Valhallavägen 120 — ät här eller take-away.',
+    highlight: 'Ät på plats, ta med eller beställ catering.',
     image: '/images/mazeh-tallrik.jpg',
-    imageAlt: 'Mazeh-tallrik med persiska smårätter på Sima Deli'
+    imageAlt: 'Mazeh-tallrik på Sima Deli'
   }
 ];
 
@@ -105,10 +99,10 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
           ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl bg-[#F4EFEA] border border-[#E7E0D8] px-6 py-12 sm:px-12 sm:py-16 lg:px-16">
-          <div className="max-w-3xl mx-auto text-center space-y-5">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
             <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#1E5F6E] bg-[#CDEBF2] px-3.5 py-1.5 rounded-full border border-[#B8E2EC]">
               <Heart className="w-3.5 h-3.5 text-[#1E5F6E]" />
-              <span>Vår Historia & Filosofi</span>
+              <span>Om oss</span>
             </span>
 
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C1917] tracking-tight leading-[1.08]">
@@ -116,9 +110,8 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
               <span className="italic font-normal text-[#9A782C]">Ett persiskt kök.</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-[#57534E] leading-relaxed max-w-2xl mx-auto">
-              På Valhallavägen 120 möts traditionella iranska familjerecept och stockholmsk
-              delikultur. Vi lagar maten med samma tålamod och värme som hemma i mammas kök.
+            <p className="text-sm sm:text-base text-[#57534E] leading-relaxed max-w-xl mx-auto">
+              Persian Soul Food på Valhallavägen 120 — lagat från grunden med värme och passion.
             </p>
           </div>
 
@@ -132,7 +125,6 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
               <p className="font-serif text-xl sm:text-2xl font-bold text-[#1C1917]">
                 Mor & Dotter
               </p>
-              <p className="text-xs text-[#57534E]">Två generationer i samma kök</p>
             </div>
 
             <div className="space-y-1">
@@ -143,7 +135,6 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
               <p className="font-serif text-xl sm:text-2xl font-bold text-[#1C1917]">
                 Långkok från grunden
               </p>
-              <p className="text-xs text-[#57534E]">Färska örter, saffran & torkad lime</p>
             </div>
 
             <div className="space-y-1">
@@ -152,16 +143,15 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
                 <span>Plats</span>
               </div>
               <p className="font-serif text-xl sm:text-2xl font-bold text-[#1C1917]">
-                Östermalm
+                Valhallavägen 120
               </p>
-              <p className="text-xs text-[#57534E]">Valhallavägen 120, Stockholm</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* =====================================================================
-          2. INTERACTIVE STORY CHAPTERS (TABS + EDITORIAL SPLIT)
+          2. INTERACTIVE STORY CHAPTERS (LIGHT TEXT)
           ===================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#E7E0D8] pb-2">
@@ -174,7 +164,6 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
             </h2>
           </div>
 
-          {/* Accessible horizontal tablist */}
           <div
             role="tablist"
             aria-label="Berättelsekapitel om Sima Deli"
@@ -208,7 +197,6 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
           </div>
         </div>
 
-        {/* Active Chapter Panel */}
         <div
           role="tabpanel"
           aria-labelledby={`tab-${activeChapter.id}`}
@@ -223,11 +211,9 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
               {activeChapter.title}
             </h3>
 
-            <div className="space-y-4 text-sm sm:text-base text-[#57534E] leading-relaxed">
-              {activeChapter.paragraphs.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-              ))}
-            </div>
+            <p className="text-sm sm:text-base text-[#57534E] leading-relaxed">
+              {activeChapter.summary}
+            </p>
 
             <blockquote className="border-l-2 border-[#C6A04A] pl-4 py-1 italic font-serif text-lg text-[#1C1917]">
               “{activeChapter.highlight}”
@@ -281,11 +267,10 @@ export const OmOssPage: React.FC<OmOssPageProps> = ({ onOpenBooking, onNavigate 
                 <span>Tis–Fre 10–19 • Lör–Sön 10–17</span>
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold leading-tight">
-                Kom förbi på en lunch, eller låt oss laga maten till ditt nästa sällskap
+                Välkommen in till Sima Deli
               </h2>
               <p className="text-sm sm:text-base text-[#E6F4F7] max-w-xl leading-relaxed">
-                Oavsett om du vill boka bord på Valhallavägen 120, utforska veckans meny eller
-                beställa catering finns vi här för att ta hand om dig.
+                Ät här eller take-away på Valhallavägen 120.
               </p>
             </div>
 
