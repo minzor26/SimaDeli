@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { BookingModal } from './components/BookingModal';
+import { CookingLoader } from './components/CookingLoader';
 import { HomePage } from './pages/HomePage';
 import { OmOssPage } from './pages/OmOssPage';
 import { MenyPage3 } from './pages/MenyPage3';
@@ -129,6 +130,8 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1C1917] overflow-x-clip">
+      <CookingLoader />
+
       {/* Global Navigation Header */}
       <Header
         currentPath={currentPath}

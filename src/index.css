@@ -102,3 +102,61 @@ html {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Cooking loader animations (opt-in for reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes steamRise {
+    0% {
+      opacity: 0;
+      transform: translateY(4px) scaleY(0.9);
+    }
+    45% {
+      opacity: 0.9;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-8px) scaleY(1.08);
+    }
+  }
+
+  @keyframes lidSimmer {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    30% {
+      transform: translateY(-1.5px) rotate(-1deg);
+    }
+    65% {
+      transform: translateY(-1px) rotate(1deg);
+    }
+  }
+
+  @keyframes flamePulse {
+    0%, 100% {
+      opacity: 0.85;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+  }
+
+  .cooking-steam-1 {
+    animation: steamRise 1.6s ease-in-out infinite;
+  }
+  .cooking-steam-2 {
+    animation: steamRise 1.6s ease-in-out 0.35s infinite;
+  }
+  .cooking-steam-3 {
+    animation: steamRise 1.6s ease-in-out 0.7s infinite;
+  }
+  .cooking-lid {
+    transform-origin: 48px 42px;
+    animation: lidSimmer 1.2s ease-in-out infinite;
+  }
+  .cooking-flame {
+    transform-origin: 48px 82px;
+    animation: flamePulse 0.9s ease-in-out infinite;
+  }
+}
