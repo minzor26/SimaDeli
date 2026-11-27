@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Phone, ShoppingBag, Sparkles, Utensils } from 'lucide-react';
-import { RESTAURANT_INFO, MENU_ITEMS, type MenuItem } from '../../data/siteData';
+import { ShoppingBag, Sparkles, Utensils } from 'lucide-react';
+import { MENU_ITEMS, type MenuItem } from '../../data/siteData';
 
 interface MenuLayoutProps {
   onOpenBooking?: () => void;
@@ -8,7 +8,7 @@ interface MenuLayoutProps {
   hideImages?: boolean;
 }
 
-export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, hideImages = true }) => {
+export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ hideImages = true }) => {
   const [addedItem, setAddedItem] = useState<string | null>(null);
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
@@ -141,8 +141,8 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, 
   );
 
   return (
-    <div className="w-full min-h-screen bg-[#FAF8F5] pt-24 sm:pt-28 pb-24 font-sans animate-fadeIn text-stone-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+    <div className="w-full min-h-screen bg-[#FAF8F5] pt-24 sm:pt-28 pb-20 font-sans animate-fadeIn text-stone-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-14">
         
         {/* Toast Alert */}
         {addedItem && (
@@ -153,75 +153,19 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, 
         )}
 
         {/* ========================================================================= */}
-        {/* 1. TOP HEADER & HERO SECTION                                              */}
+        {/* 1. COMPACT PAGE HEADING + CATEGORY JUMP NAVIGATION                        */}
         {/* ========================================================================= */}
-        <div className="space-y-12">
-          {/* Breadcrumbs in Swedish */}
-          <div className="text-center">
-            <div className="text-xs text-stone-400 font-medium">
-              <button
-                onClick={() => onNavigate && onNavigate('/')}
-                className="hover:text-stone-600 transition-colors cursor-pointer"
-              >
-                Hem
-              </button>{' '}
-              /{' '}
-              <span className="text-[#c6a04a] font-semibold">Meny</span>
-            </div>
-          </div>
-
-          {/* Hero Banner: With or Without Food Image depending on hideImages */}
-          <div className={`grid grid-cols-1 ${hideImages ? 'lg:grid-cols-1 max-w-4xl mx-auto text-center' : 'lg:grid-cols-12'} gap-10 items-center bg-[#FAF8F5] p-6 sm:p-10 rounded-3xl border border-stone-200`}>
-            {!hideImages && (
-              <div className="lg:col-span-5 flex justify-center">
-                <div className="relative w-full max-w-sm rounded-3xl overflow-hidden shadow-xl ring-8 ring-white bg-white p-2.5 flex items-center justify-center">
-                  <img
-                    src="/images/zereshk-polo.jpg"
-                    alt="Sima Deli Zereshkpolo"
-                    className="w-full h-auto max-h-80 sm:max-h-96 object-contain object-center rounded-2xl"
-                  />
-                </div>
-              </div>
-            )}
-
-            <div className={`${hideImages ? 'space-y-4 max-w-2xl mx-auto flex flex-col items-center' : 'lg:col-span-7 space-y-4'}`}>
-              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#c6a04a]">
-                <span>—</span>
-                <span>BÄSTA KVALITET</span>
-                {hideImages && <span>—</span>}
-              </div>
-
-              <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-stone-900 leading-tight">
-                STOCKHOLMS MEST SMAKRIKA PERSISKA BORD.
-              </h3>
-
-              <p className="text-xs sm:text-sm text-stone-600 font-light leading-relaxed max-w-lg">
-                Sedan grundandet har Sima Deli serverat autentisk persisk mat med högsta kvalitet på Valhallavägen 120. Varje rätt är omsorgsfullt tillagad från grunden med handplockat saffran och färska örter.
-              </p>
-
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 pt-2">
-                <button
-                  onClick={() => onNavigate && onNavigate('/om-oss/')}
-                  className="px-6 py-2.5 rounded-full bg-[#1C1917] hover:bg-stone-800 text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-sm flex items-center gap-2"
-                >
-                  <span>OM RESTAURANGEN</span>
-                  <span>→</span>
-                </button>
-                <a
-                  href={`tel:${RESTAURANT_INFO.phoneRaw}`}
-                  className="flex items-center gap-2 text-xs font-bold text-stone-800 hover:text-[#c6a04a] transition-colors"
-                >
-                  <Phone className="w-3.5 h-3.5 text-[#c6a04a]" />
-                  <span>{RESTAURANT_INFO.phone}</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* SUBTLE PASSION STATEMENT */}
-          <div className="flex items-center justify-center gap-2.5 text-center text-xs sm:text-sm text-stone-500 font-medium px-4">
-            <Sparkles className="w-4 h-4 text-[#c6a04a] shrink-0" />
-            <span>Passion för traditionell persisk matlagning sedan starten</span>
+        <div className="space-y-5">
+          <div className="text-center space-y-2">
+            <span className="text-[11px] font-bold uppercase tracking-widest text-[#c6a04a]">
+              Sima Deli • Valhallavägen 120
+            </span>
+            <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-stone-900">
+              Vår Meny
+            </h1>
+            <p className="text-xs sm:text-sm text-stone-500 max-w-xl mx-auto">
+              Autentisk persisk mat lagad från grunden — ät här eller ta med.
+            </p>
           </div>
 
           {/* CATEGORY JUMP NAVIGATION BAR */}
@@ -230,6 +174,7 @@ export const MenuLayoutLuxuryDishes: React.FC<MenuLayoutProps> = ({ onNavigate, 
               {categoriesNav.map((cat) => (
                 <button
                   key={cat.id}
+                  type="button"
                   onClick={() => scrollToSection(cat.id)}
                   className="px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white hover:bg-stone-900 hover:text-white border border-stone-200 text-stone-700 transition-colors shadow-2xs cursor-pointer"
                 >
